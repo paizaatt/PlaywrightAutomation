@@ -47,7 +47,7 @@ Call log:
               - /url: https://www.f8betdaily.com/
               - img [ref=e26]
               - generic [ref=e27]: Đại Lý
-        - generic [ref=e28]: 2026/06/27 (T7) 08:37:37
+        - generic [ref=e28]: 2026/06/27 (T7) 08:43:00
       - generic [ref=e30]:
         - button "Nạp tiền" [ref=e31] [cursor=pointer]: Nạp tiền
         - button "Rút tiền" [ref=e33] [cursor=pointer]: Rút tiền
@@ -187,10 +187,10 @@ Call log:
         - generic [ref=e184]:
           - list [ref=e186]:
             - listitem [ref=e187] [cursor=pointer]:
-              - heading "NẠP NHANH 81❤️" [level=3] [ref=e188]
+              - heading "NẠP NHANH 57❤️" [level=3] [ref=e188]
               - paragraph [ref=e189]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e190]: 500 ~ 250,000
+                - generic [ref=e190]: 50 ~ 300,000
               - generic [ref=e191]: 
             - listitem [ref=e192] [cursor=pointer]:
               - heading "NẠP NHANH 85 ❤️" [level=3] [ref=e193]
@@ -211,40 +211,40 @@ Call log:
                 - generic [ref=e205]: 50 ~ 100,000
               - generic [ref=e206]: 
             - listitem [ref=e207] [cursor=pointer]:
-              - heading "NẠP NHANH 05❤️" [level=3] [ref=e208]
+              - heading "NẠP NHANH 81❤️" [level=3] [ref=e208]
               - paragraph [ref=e209]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e210]: 50 ~ 250,000
+                - generic [ref=e210]: 500 ~ 250,000
               - generic [ref=e211]: 
             - listitem [ref=e212] [cursor=pointer]:
-              - heading "NẠP NHANH 21 ❤️" [level=3] [ref=e213]
+              - heading "NẠP NHANH 05❤️" [level=3] [ref=e213]
               - paragraph [ref=e214]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e215]: 100 ~ 300,000
+                - generic [ref=e215]: 50 ~ 250,000
               - generic [ref=e216]: 
             - listitem [ref=e217] [cursor=pointer]:
-              - heading "NẠP NHANH 84 ❤️" [level=3] [ref=e218]
+              - heading "NẠP NHANH 21 ❤️" [level=3] [ref=e218]
               - paragraph [ref=e219]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e220]: 50 ~ 300,000
+                - generic [ref=e220]: 100 ~ 300,000
               - generic [ref=e221]: 
             - listitem [ref=e222] [cursor=pointer]:
-              - heading "NẠP NHANH 33❤️" [level=3] [ref=e223]
+              - heading "NẠP NHANH 84 ❤️" [level=3] [ref=e223]
               - paragraph [ref=e224]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e225]: 50 ~ 290,000
+                - generic [ref=e225]: 50 ~ 300,000
               - generic [ref=e226]: 
             - listitem [ref=e227] [cursor=pointer]:
-              - heading "NẠP NHANH 92 ❤️" [level=3] [ref=e228]
+              - heading "NẠP NHANH 33❤️" [level=3] [ref=e228]
               - paragraph [ref=e229]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e230]: 100 ~ 200,000
+                - generic [ref=e230]: 50 ~ 290,000
               - generic [ref=e231]: 
             - listitem [ref=e232] [cursor=pointer]:
-              - heading "NẠP NHANH 57❤️" [level=3] [ref=e233]
+              - heading "NẠP NHANH 92 ❤️" [level=3] [ref=e233]
               - paragraph [ref=e234]:
                 - text: Giới hạn nạp tối thiểu
-                - generic [ref=e235]: 50 ~ 300,000
+                - generic [ref=e235]: 100 ~ 200,000
               - generic [ref=e236]: 
             - listitem [ref=e237] [cursor=pointer]:
               - heading "NẠP NHANH 80❤️" [level=3] [ref=e238]

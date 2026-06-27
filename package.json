@@ -1,0 +1,25 @@
+{
+  "name": "playwright-auto-truytimkhobau",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test --config=config/playwright.config.ts",
+    "test:headed": "playwright test --config=config/playwright.config.ts --headed",
+    "test:ui": "playwright test --config=config/playwright.config.ts --ui",
+    "report": "playwright show-report",
+    "run:auto": "node run-auto.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "ghost-cursor": "^1.4.2",
+    "playwright": "^1.60.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

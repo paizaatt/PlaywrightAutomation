@@ -1,0 +1,1181 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/health": {
+      "get": {
+        "operationId": "HealthController_health",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/api/health/swagger-routes": {
+      "get": {
+        "operationId": "HealthController_swaggerRoutes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/api/auth/config": {
+      "get": {
+        "description": "Cấu hình auth public (FE dùng để bật/tắt Turnstile)",
+        "operationId": "AuthController_getConfig",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Cấu hình auth",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Lấy cấu hình auth",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "description": "Đăng nhập với username và 4 số cuối tài khoản ngân hàng. Trả về access token và refresh token. Rate limit: 10 requests/60s",
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Đăng nhập thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Thông tin đăng nhập không chính xác"
+          },
+          "403": {
+            "description": "Tài khoản không đủ điều kiện hoặc bị khóa"
+          },
+          "429": {
+            "description": "Quá nhiều request (rate limit)"
+          }
+        },
+        "summary": "Đăng nhập",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "description": "Làm mới access token và refresh token bằng refresh token hiện tại (PHẢI dùng refresh token, không được dùng access token). Refresh token lấy từ cookie hoặc header Authorization.",
+        "operationId": "AuthController_refresh",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Làm mới token thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Refresh token không hợp lệ, đã hết hạn, hoặc đã bị thu hồi"
+          }
+        },
+        "summary": "Làm mới token",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "description": "Đăng xuất và thu hồi access token và refresh token hiện tại",
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Đăng xuất thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Đăng xuất",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "description": "Lấy thông tin cơ bản của user đang đăng nhập. Rate limit: 200 requests/60s",
+        "operationId": "MeController_me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Thông tin user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Lấy thông tin user hiện tại",
+        "tags": [
+          "Me"
+        ]
+      }
+    },
+    "/me/status": {
+      "get": {
+        "description": "Trạng thái tổng quan của user: chặng hiện tại, số rương đã mở, ký tự đã thu thập. Rate limit: 120 requests/60s",
+        "operationId": "MeController_status",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Trạng thái tổng quan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Lấy trạng thái tổng quan",
+        "tags": [
+          "Me"
+        ]
+      }
+    },
+    "/api/quest/stages": {
+      "get": {
+        "description": "Danh sách chặng kèm trạng thái điều kiện của user. Tự động gọi remote check điều kiện và unlock chặng nếu đủ điều kiện. Rate limit: 60 requests/60s",
+        "operationId": "QuestController_getStages",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Danh sách chặng",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StageDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Lấy danh sách chặng",
+        "tags": [
+          "Quest"
+        ]
+      }
+    },
+    "/api/quest/stages/{stageId}/chests": {
+      "get": {
+        "description": "Danh sách rương kèm trạng thái điều kiện incremental (chỉ đọc — milestone chỉ lưu khi mở rương). Rate limit: 60 requests/60s",
+        "operationId": "QuestController_getChests",
+        "parameters": [
+          {
+            "name": "stageId",
+            "required": true,
+            "in": "path",
+            "description": "ID của chặng (24 ký tự hex)",
+            "schema": {
+              "example": "507f1f77bcf86cd799439011",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Danh sách rương",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChestsResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "stageId không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          },
+          "404": {
+            "description": "Chặng không tồn tại"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Lấy danh sách rương của chặng",
+        "tags": [
+          "Quest"
+        ]
+      }
+    },
+    "/api/quest/open-chest": {
+      "post": {
+        "description": "Mở rương và nhận thưởng. Tự động check milestone trước khi mở. Rương phải mở theo thứ tự (0→1→2→3→4→5). Rate limit: 6 requests/60s",
+        "operationId": "QuestController_openChest",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenChestRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mở rương thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenChestSuccessDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ hoặc rương đã mở hoặc mở sai thứ tự"
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          },
+          "403": {
+            "description": "Chặng chưa mở khóa hoặc đã hoàn thành"
+          },
+          "404": {
+            "description": "Chặng không tồn tại"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Mở rương",
+        "tags": [
+          "Quest"
+        ]
+      }
+    },
+    "/api/spin-wheel/status": {
+      "get": {
+        "description": "Trạng thái vòng quay: đủ điều kiện chưa (có đủ 4 ký tự S-C-8-8), đã quay chưa, danh sách ô thưởng. Rate limit: 60 requests/60s",
+        "operationId": "SpinWheelController_getStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Trạng thái vòng quay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpinStatusResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Lấy trạng thái vòng quay",
+        "tags": [
+          "SpinWheel"
+        ]
+      }
+    },
+    "/api/spin-wheel/spin": {
+      "post": {
+        "description": "Quay vòng quay may mắn. Điều kiện: đủ 4 ký tự S-C-8-8 + chưa quay lần nào. Mỗi user chỉ quay được 1 lần duy nhất. Rate limit: 3 requests/60s (chống spam)",
+        "operationId": "SpinWheelController_spin",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Quay thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpinResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Đã quay rồi hoặc dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập"
+          },
+          "403": {
+            "description": "Chưa đủ điều kiện quay (thiếu ký tự)"
+          },
+          "404": {
+            "description": "Vòng quay chưa được cấu hình hoặc hết phần thưởng"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Quay vòng quay may mắn",
+        "tags": [
+          "SpinWheel"
+        ]
+      }
+    },
+    "/api/missions": {
+      "get": {
+        "description": "Lay danh sach nhiem vu kem trang thai. Tu dong tinh toan va luu completed dua tren so lieu nap/rut tu remote API. Rate limit: 60 req/60s",
+        "operationId": "MissionController_getMissions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Danh sach nhiem vu"
+          },
+          "401": {
+            "description": "Chua dang nhap"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Danh sach nhiem vu",
+        "tags": [
+          "Missions"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "BE Truy Tìm Kho Báu [development]",
+    "description": "Build: 1.0.0-2026-05-29 | Admin APIs are NOT in Swagger (no decorators)",
+    "version": "1.0.0-2026-05-29",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "ConfigResponseDto": {
+        "type": "object",
+        "properties": {
+          "turnstileEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Turnstile có được bật hay không"
+          }
+        },
+        "required": [
+          "turnstileEnabled"
+        ]
+      },
+      "LoginRequestDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "lokiit",
+            "description": "Tên tài khoản (chỉ chữ, số, dấu chấm, gạch dưới, gạch ngang)",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-zA-Z0-9_.-]+$"
+          },
+          "bank": {
+            "type": "string",
+            "example": "1234",
+            "description": "4 số cuối tài khoản ngân hàng",
+            "minLength": 4,
+            "maxLength": 72
+          },
+          "site": {
+            "type": "string",
+            "example": "sc88",
+            "description": "Mã site",
+            "minLength": 1
+          },
+          "turnstileToken": {
+            "type": "string",
+            "example": "token123",
+            "description": "Turnstile token (optional)"
+          }
+        },
+        "required": [
+          "username",
+          "bank",
+          "site"
+        ]
+      },
+      "AuthResponseDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "lokiit",
+            "description": "Tên tài khoản"
+          },
+          "message": {
+            "type": "string",
+            "example": "Đăng nhập thành công",
+            "description": "Thông báo"
+          }
+        },
+        "required": [
+          "username",
+          "message"
+        ]
+      },
+      "RefreshResponseDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "description": "Access token JWT mới"
+          },
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "description": "Refresh token JWT mới"
+          }
+        },
+        "required": [
+          "accessToken",
+          "refreshToken"
+        ]
+      },
+      "LogoutResponseDto": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": true,
+            "description": "Trạng thái đăng xuất"
+          }
+        },
+        "required": [
+          "ok"
+        ]
+      },
+      "MeResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "user123",
+            "description": "ID người dùng"
+          },
+          "username": {
+            "type": "string",
+            "example": "lokiit",
+            "description": "Username"
+          }
+        },
+        "required": [
+          "userId",
+          "username"
+        ]
+      },
+      "StatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "user123",
+            "description": "ID người dùng"
+          },
+          "username": {
+            "type": "string",
+            "example": "lokiit",
+            "description": "Username"
+          },
+          "currentStageOrder": {
+            "type": "number",
+            "example": 2,
+            "description": "Chặng hiện tại (0 nếu chưa có dữ liệu nạp rút, 1-4 nếu đang chơi)",
+            "format": "int32",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "completedStages": {
+            "type": "number",
+            "example": 1,
+            "description": "Số chặng đã hoàn thành",
+            "format": "int32",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "totalStages": {
+            "type": "number",
+            "example": 4,
+            "description": "Tổng số chặng trong game",
+            "format": "int32",
+            "enum": [
+              4
+            ]
+          },
+          "isGameComplete": {
+            "type": "boolean",
+            "example": false,
+            "description": "Đã hoàn thành toàn bộ game chưa (thu thập đủ 4 ký tự S-C-8-8)"
+          },
+          "collectedChars": {
+            "example": [
+              "S",
+              "C"
+            ],
+            "description": "Danh sách ký tự đã thu thập (tối đa 4 ký tự: S, C, 8, 8)",
+            "maxItems": 4,
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          },
+          "stages": {
+            "description": "Chi tiết từng chặng",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          },
+          "message": {
+            "type": "string",
+            "example": null,
+            "description": "Thông báo đặc biệt (nếu có)",
+            "nullable": true
+          }
+        },
+        "required": [
+          "userId",
+          "username",
+          "currentStageOrder",
+          "completedStages",
+          "totalStages",
+          "isGameComplete",
+          "collectedChars",
+          "stages"
+        ]
+      },
+      "StageDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "description": "ID chặng (MongoDB ObjectId)",
+            "pattern": "^[a-f\\d]{24}$"
+          },
+          "stageOrder": {
+            "type": "number",
+            "example": 1,
+            "description": "Thứ tự chặng (1, 2, 3, 4)",
+            "format": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Chặng 1: Khởi Đầu",
+            "description": "Tên chặng"
+          },
+          "description": {
+            "type": "string",
+            "example": "Hoàn thành nhiệm vụ cơ bản",
+            "description": "Mô tả chặng"
+          },
+          "status": {
+            "type": "string",
+            "example": "in_progress",
+            "description": "Trạng thái chặng",
+            "enum": [
+              "locked",
+              "in_progress",
+              "completed"
+            ]
+          },
+          "conditions": {
+            "description": "Danh sách điều kiện mở khóa chặng",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          },
+          "allConditionsMet": {
+            "type": "boolean",
+            "example": true,
+            "description": "Đã đạt tất cả điều kiện chưa (null nếu chưa có dữ liệu)",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "stageOrder",
+          "name",
+          "description",
+          "status",
+          "conditions",
+          "allConditionsMet"
+        ]
+      },
+      "StageConditionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "deposit",
+            "description": "Loại điều kiện (deposit, totalBet, slotBet, fishingBet)",
+            "enum": [
+              "deposit",
+              "totalBet",
+              "slotBet",
+              "fishingBet"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "example": "Nạp tiền",
+            "description": "Nhãn điều kiện hiển thị"
+          },
+          "required": {
+            "type": "number",
+            "example": 1000000,
+            "description": "Giá trị yêu cầu (VND)",
+            "format": "int64",
+            "minimum": 0
+          },
+          "current": {
+            "type": "number",
+            "example": 500000,
+            "description": "Giá trị hiện tại của user (VND, null nếu chưa có dữ liệu)",
+            "format": "int64",
+            "minimum": 0,
+            "nullable": true
+          },
+          "met": {
+            "type": "boolean",
+            "example": false,
+            "description": "Đã đạt điều kiện chưa (null nếu chưa có dữ liệu)",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "label",
+          "required",
+          "current",
+          "met"
+        ]
+      },
+      "ChestDto": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "number",
+            "example": 0,
+            "description": "Chỉ số rương (0-5)",
+            "format": "int32",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "label": {
+            "type": "string",
+            "example": "Rương 1",
+            "description": "Nhãn rương"
+          },
+          "isCharChest": {
+            "type": "boolean",
+            "example": false,
+            "description": "Có phải rương ký tự không (index=5)"
+          },
+          "isTrap": {
+            "type": "boolean",
+            "example": false,
+            "description": "Có phải rương bẫy không"
+          },
+          "opened": {
+            "type": "boolean",
+            "example": false,
+            "description": "Đã mở chưa"
+          },
+          "rewardAmount": {
+            "type": "number",
+            "example": 50000,
+            "description": "Số tiền thưởng (VND, null nếu chưa mở)",
+            "format": "int64",
+            "minimum": 0,
+            "nullable": true
+          },
+          "milestoneMet": {
+            "type": "boolean",
+            "example": true,
+            "description": "Đã đạt milestone chưa"
+          },
+          "conditions": {
+            "description": "Danh sách điều kiện mở rương (incremental)",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          },
+          "allConditionsMet": {
+            "type": "boolean",
+            "example": true,
+            "description": "Đã đạt tất cả điều kiện chưa"
+          }
+        },
+        "required": [
+          "index",
+          "label",
+          "isCharChest",
+          "isTrap",
+          "opened",
+          "rewardAmount",
+          "milestoneMet",
+          "conditions",
+          "allConditionsMet"
+        ]
+      },
+      "ChestsResponseDto": {
+        "type": "object",
+        "properties": {
+          "stageId": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "description": "ID chặng"
+          },
+          "stageOrder": {
+            "type": "number",
+            "example": 1,
+            "description": "Thứ tự chặng"
+          },
+          "name": {
+            "type": "string",
+            "example": "Chặng 1: Khởi Đầu",
+            "description": "Tên chặng"
+          },
+          "status": {
+            "type": "string",
+            "example": "in_progress",
+            "description": "Trạng thái chặng"
+          },
+          "stageConditions": {
+            "description": "Điều kiện chặng",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StageConditionDto"
+            }
+          },
+          "allStageConditionsMet": {
+            "type": "object",
+            "example": true,
+            "description": "Đã đạt tất cả điều kiện chặng chưa",
+            "nullable": true
+          },
+          "chests": {
+            "description": "Danh sách rương",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChestDto"
+            }
+          }
+        },
+        "required": [
+          "stageId",
+          "stageOrder",
+          "name",
+          "status",
+          "stageConditions",
+          "allStageConditionsMet",
+          "chests"
+        ]
+      },
+      "OpenChestRequestDto": {
+        "type": "object",
+        "properties": {
+          "stageId": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "description": "ID của chặng (24 ký tự hex - MongoDB ObjectId)",
+            "pattern": "^[a-f\\d]{24}$",
+            "minLength": 24,
+            "maxLength": 24
+          },
+          "chestIndex": {
+            "type": "number",
+            "example": 0,
+            "description": "Chỉ số rương (0-5, trong đó 5 là rương ký tự)",
+            "minimum": 0,
+            "maximum": 5,
+            "format": "int32"
+          }
+        },
+        "required": [
+          "stageId",
+          "chestIndex"
+        ]
+      },
+      "OpenChestSuccessDto": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": true,
+            "description": "Thành công hay không"
+          },
+          "canOpen": {
+            "type": "boolean",
+            "example": true,
+            "description": "Có thể mở rương không"
+          },
+          "chestIndex": {
+            "type": "number",
+            "example": 0,
+            "description": "Chỉ số rương vừa mở"
+          },
+          "isCharChest": {
+            "type": "boolean",
+            "example": false,
+            "description": "Có phải rương ký tự không"
+          },
+          "rewardAmount": {
+            "type": "number",
+            "example": 50000,
+            "description": "Số tiền thưởng"
+          },
+          "isTrapFailed": {
+            "type": "boolean",
+            "example": false,
+            "description": "Có trúng bẫy không"
+          },
+          "collectedChar": {
+            "type": "object",
+            "example": null,
+            "description": "Ký tự thu thập được (chỉ có khi isCharChest=true)",
+            "nullable": true
+          },
+          "stageCompleted": {
+            "type": "boolean",
+            "example": false,
+            "description": "Chặng đã hoàn thành chưa"
+          },
+          "nextChestIndex": {
+            "type": "object",
+            "example": 1,
+            "description": "Chỉ số rương tiếp theo (null nếu đã hết)",
+            "nullable": true
+          },
+          "nextStage": {
+            "type": "object",
+            "description": "Chặng tiếp theo sau khi hoàn thành rương ký tự (null nếu hết chặng)",
+            "nullable": true,
+            "example": {
+              "stageId": "507f1f77bcf86cd799439011",
+              "stageOrder": 2,
+              "name": "Chặng 2",
+              "status": "in_progress",
+              "unlocked": true
+            }
+          },
+          "message": {
+            "type": "string",
+            "example": "Chúc mừng! Bạn nhận được 50,000 VND",
+            "description": "Thông báo"
+          }
+        },
+        "required": [
+          "ok",
+          "canOpen",
+          "chestIndex",
+          "isCharChest",
+          "rewardAmount",
+          "isTrapFailed",
+          "collectedChar",
+          "stageCompleted",
+          "nextChestIndex",
+          "nextStage",
+          "message"
+        ]
+      },
+      "SpinResultDto": {
+        "type": "object",
+        "properties": {
+          "configCode": {
+            "type": "string",
+            "example": "prize_50k",
+            "description": "Mã ô thưởng trúng"
+          },
+          "rewardType": {
+            "type": "string",
+            "example": "point",
+            "description": "Loại thưởng",
+            "enum": [
+              "point",
+              "gift"
+            ]
+          },
+          "pointValue": {
+            "type": "string",
+            "example": "50,000",
+            "description": "Giá trị điểm (VND)",
+            "nullable": true
+          },
+          "giftName": {
+            "type": "string",
+            "example": null,
+            "description": "Tên quà",
+            "nullable": true
+          },
+          "spunAt": {
+            "type": "string",
+            "example": "2024-01-15T10:30:00.000Z",
+            "description": "Thời gian quay (ISO 8601)",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "configCode",
+          "rewardType",
+          "pointValue",
+          "giftName",
+          "spunAt"
+        ]
+      },
+      "SpinStatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "eligible": {
+            "type": "boolean",
+            "example": true,
+            "description": "Đủ điều kiện quay chưa (có đủ 4 ký tự S-C-8-8)"
+          },
+          "alreadySpun": {
+            "type": "boolean",
+            "example": false,
+            "description": "Đã quay chưa (mỗi user chỉ quay 1 lần)"
+          },
+          "collectedChars": {
+            "example": [
+              "S",
+              "C",
+              "8",
+              "8"
+            ],
+            "description": "Danh sách ký tự đã thu thập",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          },
+          "missingChars": {
+            "example": [],
+            "description": "Danh sách ký tự còn thiếu",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          },
+          "spinResult": {
+            "description": "Kết quả quay (nếu đã quay)",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpinResultDto"
+              }
+            ]
+          },
+          "prizes": {
+            "description": "Danh sách ô thưởng (để FE render vòng quay)",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "a"
+              }
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "eligible",
+          "alreadySpun",
+          "collectedChars",
+          "missingChars",
+          "prizes"
+        ]
+      },
+      "SpinResponseDto": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": true,
+            "description": "Quay thành công hay không"
+          },
+          "configCode": {
+            "type": "string",
+            "example": "prize_50k",
+            "description": "Mã ô thưởng trúng"
+          },
+          "label": {
+            "type": "string",
+            "example": "50,000 VND",
+            "description": "Nhãn ô thưởng"
+          },
+          "rewardType": {
+            "type": "string",
+            "example": "point",
+            "description": "Loại thưởng",
+            "enum": [
+              "point",
+              "gift"
+            ]
+          },
+          "pointValue": {
+            "type": "string",
+            "example": "50,000",
+            "description": "Giá trị điểm (VND, nếu rewardType=point)",
+            "nullable": true
+          },
+          "giftName": {
+            "type": "string",
+            "example": null,
+            "description": "Tên quà (nếu rewardType=gift)",
+            "nullable": true
+          },
+          "dispatched": {
+            "type": "boolean",
+            "example": true,
+            "description": "Đã dispatch thưởng thành công chưa"
+          },
+          "message": {
+            "type": "string",
+            "example": "Chúc mừng! Bạn đã trúng 50,000 VND!",
+            "description": "Thông báo"
+          }
+        },
+        "required": [
+          "ok",
+          "configCode",
+          "label",
+          "rewardType",
+          "pointValue",
+          "giftName",
+          "dispatched",
+          "message"
+        ]
+      }
+    }
+  }
+}

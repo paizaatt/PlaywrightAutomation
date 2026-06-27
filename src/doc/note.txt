@@ -1,0 +1,35 @@
+[Framework Hiện Tại] ➡️ Thêm 5 Trụ Cột Enterprise ➡️ [Hệ Thống Chuẩn Production 2026]
+                          ├── 1. CI/CD Pipeline (GitHub Actions/Jenkins)
+                          ├── 2. Tự Động Hóa Dữ Liệu (Faker / API Data Injection)
+                          ├── 3. Báo Cáo Chuyên Sâu (Allure / Dashboard)
+                          ├── 4. Giám Sát Lỗi (Traces / Video Upload Artifacts)
+                          └── 5. Tối Ưu Code Sạch (Ruff Linter / Husky Git Hooks)
+
+
+🛠️ Trụ cột 1: Tích hợp CI/CD Pipeline hoàn chỉnh
+
+File config đã có biến process.env.CI, chứng tỏ hệ thống đã sẵn sàng để đưa lên môi trường chạy tự động.
+Hành động: Bạn cần cấu hình file .github/workflows/playwright.yml (nếu dùng GitHub) hoặc Pipeline trên Jenkins/GitLab CI.
+Bộ test phải tự động kích hoạt chạy ngay khi lập trình viên (Developer) 
+tạo một Pull Request mới để kiểm tra xem code mới có làm hỏng tính năng cũ không (Regression Testing).
+
+📊 Trụ cột 2: Hệ thống Báo cáo Trực quan (Advanced Reporting)
+
+Hiện tại dự án mới dùng html và list reporter mặc định của Playwright. 
+Khi chạy trên CI, báo cáo này rất khó để quản lý lịch sử theo thời gian.
+
+Hành động: Tích hợp Allure Report hoặc các nền tảng Dashboard tập trung (như ReportPortal). 
+Nó giúp quản lý xu hướng (Trend) của bộ test qua từng ngày, tự động phân loại xem lỗi là do Bug hệ thống hay do Bài test viết lỗi (Flaky).
+
+🎲 Trụ cột 3: Quản lý Dữ liệu Test thông minh (Data Management)
+
+Trong file test, bạn đang dùng tài khoản cố định env.auth.username. 
+Nếu nhiều luồng chạy cùng lúc và cùng đổi thông tin của tài khoản này, test sẽ sập.
+
+Hành động:Tích hợp thư viện Faker để tự động sinh dữ liệu ngẫu nhiên (Họ tên, email, số điện thoại ảo) cho mỗi lượt chạy test.
+Xây dựng các Fixture gọi API ngầm để tạo nhanh dữ liệu (Data Injection) trước khi test UI, thay vì bắt trình duyệt phải click từng bước để tạo dữ liệu mồi.
+
+🔍 Trụ cột 4: Quản lý Chất lượng Code và Git Hooks (Code Quality)
+
+Tích hợp công cụ Ruff hoặc ESLint/Prettier cùng với Husky (Pre-commit hooks). Khi bất kỳ ai gõ code sai chuẩn hoặc để lại code thừa,
+hệ thống Git sẽ chặn lại không cho commit lên GitHub cho đến khi sửa sạch lỗi code.

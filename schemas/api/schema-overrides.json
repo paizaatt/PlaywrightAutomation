@@ -1,0 +1,13 @@
+{
+  "$comment": "Override schemas broken in BE Swagger export (nested type: \"a\" instead of $ref). Re-fetch openapi.json and remove entries once BE is fixed.",
+  "schemas": {
+    "StageDto": {
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": { "$ref": "#/components/schemas/StageConditionDto" }
+        }
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@ export class LoginPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto('/');
+    await this.page.goto('https://www.78winc3.com/');
     await this.loginForm.usernameInput.waitFor({ state: 'visible' });
   }
 }

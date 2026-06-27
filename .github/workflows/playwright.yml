@@ -31,11 +31,10 @@ jobs:
           path: playwright-report/
           retention-days: 30  
 
-      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Tự động dò đường dẫn)
+      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Lấy nhiều Testcase)
       - name: Trích xuất thông tin lỗi và Hình ảnh
         if: failure()
         run: |
-          # Lệnh find này sẽ lục soát toàn bộ dự án để tìm file results.json
           REPORT_FILE=$(find . -type f -name "results.json" | head -n 1)
           export REPORT_FILE_PATH="$REPORT_FILE"
 
@@ -45,39 +44,45 @@ jobs:
           const reportPath = process.env.REPORT_FILE_PATH;
           
           let failCount = 'Không đếm được';
-          let testName = 'Không rõ';
-          let errorMsg = 'Không tìm thấy file results.json dù đã quét toàn bộ dự án.';
+          let errorDetails = 'Không tìm thấy file results.json.';
 
           if (reportPath && fs.existsSync(reportPath)) {
               const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
               failCount = data.stats ? data.stats.unexpected : 0;
               
-              outer: for (const suite of (data.suites || [])) {
+              let failedTests = [];
+              for (const suite of (data.suites || [])) {
                   for (const spec of (suite.specs || [])) {
                       for (const test of (spec.tests || [])) {
                           for (const res of (test.results || [])) {
                               if (res.status === 'failed' || res.status === 'timedOut') {
-                                  testName = spec.title;
-                                  if (res.error && res.error.message) {
-                                      errorMsg = res.error.message.split('\n').slice(0, 10).join('\n');
-                                  } else {
-                                      errorMsg = 'Lỗi không xác định (Có thể do Timeout hoặc Crash)';
-                                  }
-                                  break outer;
+                                  let testName = spec.title;
+                                  // Cắt lấy tối đa 3 dòng lỗi của mỗi testcase để tin nhắn không bị tràn
+                                  let errMsg = res.error && res.error.message ? res.error.message.split('\n').slice(0, 3).join('\n') : 'Lỗi không xác định';
+                                  failedTests.push('👉 TEST: ' + testName + '\n' + errMsg);
                               }
                           }
                       }
                   }
               }
+              
+              if (failedTests.length > 0) {
+                  // Chỉ lấy tối đa 3 lỗi đầu tiên để gửi Telegram
+                  const displayCount = Math.min(failedTests.length, 3);
+                  errorDetails = failedTests.slice(0, displayCount).join('\n\n');
+                  
+                  if (failedTests.length > 3) {
+                      errorDetails += '\n\n... và ' + (failedTests.length - 3) + ' testcases khác. (Vui lòng xem chi tiết trong link báo cáo).';
+                  }
+              } else {
+                  errorDetails = 'Không trích xuất được chi tiết lỗi.';
+              }
           }
           
-          // Đẩy ra GitHub Env
-          fs.appendFileSync(envFile, \`FAIL_COUNT=\${failCount}\n\`);
-          fs.appendFileSync(envFile, \`FAILED_TEST_NAME=\${testName}\n\`);
-          fs.appendFileSync(envFile, \`ERROR_MSG<<EOF\n\${errorMsg}\nEOF\n\`);
+          fs.appendFileSync(envFile, 'FAIL_COUNT=' + failCount + '\n');
+          fs.appendFileSync(envFile, 'ERROR_MSG<<EOF\n' + errorDetails + '\nEOF\n');
           "
           
-          # Tự động tìm ảnh lỗi ở bất kỳ đâu trong dự án
           PHOTO_PATH=$(find . -type f -name "*.png" | head -n 1)
           echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
 
@@ -108,13 +113,10 @@ jobs:
           message: |
             ❌ [FAIL] CẢNH BÁO CI/CD PLAYWRIGHT
             --------------------------------------
-            ⚠️ Số lượng Testcase bị Fail: ${{ env.FAIL_COUNT }}
+            ⚠️ Tổng số Testcase bị Fail: ${{ env.FAIL_COUNT }}
             👤 Kích hoạt bởi: ${{ github.actor }}
             
-            🎯 TESTCASE LỖI: 
-            👉 ${{ env.FAILED_TEST_NAME }}
-            
-            📝 CHI TIẾT LỖI:
+            📝 CHI TIẾT CÁC LỖI (Tối đa 3 case):
             ${{ env.ERROR_MSG }}
             
             🔗 Xem toàn bộ báo cáo tại:

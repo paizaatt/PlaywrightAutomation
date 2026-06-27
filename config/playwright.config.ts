@@ -30,7 +30,7 @@ export default defineConfig({
 
     // 2. CẤU HÌNH MẠNG & ĐƯỜNG DẪN (NÊN THÊM)
     // Tận dụng biến môi trường bạn đã setup ở file playwright.yml
-    //baseURL: process.env.BASE_URL || 'http://localhost:8080', 
+    baseURL: process.env.BASE_URL || 'https://f8betbb1.vip/', 
 
     // 3. CẤU HÌNH TIMEOUT (NÊN THÊM)
     // Giới hạn thời gian tối đa cho 1 thao tác (click, fill, hover...) để tránh test bị treo vô hạn

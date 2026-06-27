@@ -29,7 +29,22 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 30
+          retention-days: 30  
+      - name: Bắn thông báo Telegram
+        uses: appleboy/telegram-action@master
+        if: always() # Bắt buộc phải có dòng này để dù test Fail thì bot vẫn báo
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🤖 CẢNH BÁO CI/CD PLAYWRIGHT
+            --------------------------------------
+            Trạng thái chạy: ${{ job.status == 'success' && '✅ PASS' || '❌ FAIL' }}
+            Kích hoạt bởi: ${{ github.actor }}
+            Nhánh cập nhật: ${{ github.ref_name }}
+            
+            🔗 Xem báo cáo chi tiết tại:
+            https://paizaatt.github.io/PlaywrightAutomation/    
       - name: Xuất báo cáo lên GitHub Pages (Xem Online)
         uses: peaceiris/actions-gh-pages@v4
         if: always()

@@ -31,32 +31,34 @@ jobs:
           path: playwright-report/
           retention-days: 30  
 
-      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS
+      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Tự động dò đường dẫn)
       - name: Trích xuất thông tin lỗi và Hình ảnh
         if: failure()
         run: |
+          # Lệnh find này sẽ lục soát toàn bộ dự án để tìm file results.json
+          REPORT_FILE=$(find . -type f -name "results.json" | head -n 1)
+          export REPORT_FILE_PATH="$REPORT_FILE"
+
           node -e "
           const fs = require('fs');
           const envFile = process.env.GITHUB_ENV;
-          const reportPath = 'playwright-report/results.json';
+          const reportPath = process.env.REPORT_FILE_PATH;
           
           let failCount = 'Không đếm được';
           let testName = 'Không rõ';
-          let errorMsg = 'Không tìm thấy file results.json. Vui lòng kiểm tra lại file playwright.config.ts đã được push lên chưa.';
+          let errorMsg = 'Không tìm thấy file results.json dù đã quét toàn bộ dự án.';
 
-          if (fs.existsSync(reportPath)) {
+          if (reportPath && fs.existsSync(reportPath)) {
               const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
               failCount = data.stats ? data.stats.unexpected : 0;
               
-              // Cày xới file JSON để tìm Testcase bị fail
               outer: for (const suite of (data.suites || [])) {
                   for (const spec of (suite.specs || [])) {
                       for (const test of (spec.tests || [])) {
                           for (const res of (test.results || [])) {
                               if (res.status === 'failed' || res.status === 'timedOut') {
-                                  testName = spec.title; // Lấy tên Testcase
+                                  testName = spec.title;
                                   if (res.error && res.error.message) {
-                                      // Cắt lấy tối đa 10 dòng lỗi đầu tiên cho gọn
                                       errorMsg = res.error.message.split('\n').slice(0, 10).join('\n');
                                   } else {
                                       errorMsg = 'Lỗi không xác định (Có thể do Timeout hoặc Crash)';
@@ -69,15 +71,14 @@ jobs:
               }
           }
           
-          // Đẩy dữ liệu ra biến môi trường của GitHub
+          // Đẩy ra GitHub Env
           fs.appendFileSync(envFile, \`FAIL_COUNT=\${failCount}\n\`);
           fs.appendFileSync(envFile, \`FAILED_TEST_NAME=\${testName}\n\`);
           fs.appendFileSync(envFile, \`ERROR_MSG<<EOF\n\${errorMsg}\nEOF\n\`);
           "
           
-          # Tìm file ảnh chụp màn hình
-          mkdir -p test-results
-          PHOTO_PATH=$(find test-results -type f -name "*.png" | head -n 1)
+          # Tự động tìm ảnh lỗi ở bất kỳ đâu trong dự án
+          PHOTO_PATH=$(find . -type f -name "*.png" | head -n 1)
           echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
 
       # 2. GỬI TIN NHẮN KHI PASS (Màu xanh)

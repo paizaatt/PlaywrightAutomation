@@ -4,7 +4,7 @@ export const authStoragePath = path.join(__dirname, '../.auth/user.json');
 export const apiAuthStoragePath = path.join(__dirname, '../.auth/api-session.json');
 
 export const env = {
-  baseUrl: process.env.BASE_URL ?? 'http://localhost:8080',
+  baseUrl: process.env.BASE_URL ?? 'https://f8betbb1.vip/',
   apiBaseUrl: process.env.API_BASE_URL ?? 'https://be-truytimkhobau-sc.attops.net',
   auth: {
     username: process.env.UI_AUTH_USERNAME ?? 'admin',

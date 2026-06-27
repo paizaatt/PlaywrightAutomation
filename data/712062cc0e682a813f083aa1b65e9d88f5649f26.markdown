@@ -47,7 +47,7 @@ Call log:
               - /url: https://www.f8betdaily.com/
               - img [ref=e26]
               - generic [ref=e27]: Đại Lý
-        - generic [ref=e28]: 2026/06/27 (T7) 08:30:34
+        - generic [ref=e28]: 2026/06/27 (T7) 08:37:37
       - generic [ref=e30]:
         - button "Nạp tiền" [ref=e31] [cursor=pointer]: Nạp tiền
         - button "Rút tiền" [ref=e33] [cursor=pointer]: Rút tiền

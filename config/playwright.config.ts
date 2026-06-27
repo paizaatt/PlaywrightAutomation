@@ -20,7 +20,7 @@ export default defineConfig({
   reporter: [
     ['html', { open: 'never' }], 
     ['list'],
-    ['json', { outputFile: 'playwright-report/results.json' }] // Dòng mới thêm
+    ['json', { outputFile: 'config/playwright-report/results.json' }] // Dòng mới thêm
   ],
   use: {
     // 1. CẤU HÌNH TRACE, SCREENSHOT, VIDEO

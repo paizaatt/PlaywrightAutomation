@@ -31,32 +31,54 @@ jobs:
           path: playwright-report/
           retention-days: 30  
 
-      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI (Chạy khi Fail)
+      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS
       - name: Trích xuất thông tin lỗi và Hình ảnh
         if: failure()
         run: |
-          REPORT_FILE="playwright-report/results.json"
+          node -e "
+          const fs = require('fs');
+          const envFile = process.env.GITHUB_ENV;
+          const reportPath = 'playwright-report/results.json';
           
-          # Kiểm tra xem file JSON có tồn tại không
-          if [ -f "$REPORT_FILE" ]; then
-            FAIL_COUNT=$(jq '.errors | length' "$REPORT_FILE")
-            # Lấy 15 dòng đầu của lỗi để đọc cho rõ ràng
-            ERROR_MSG=$(jq -r '.errors[0].message' "$REPORT_FILE" | head -n 15)
-          else
-            FAIL_COUNT="Không đếm được"
-            ERROR_MSG="Không tìm thấy file results.json. Hãy kiểm tra lại cấu hình Playwright."
-          fi
+          let failCount = 'Không đếm được';
+          let testName = 'Không rõ';
+          let errorMsg = 'Không tìm thấy file results.json. Vui lòng kiểm tra lại file playwright.config.ts đã được push lên chưa.';
+
+          if (fs.existsSync(reportPath)) {
+              const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+              failCount = data.stats ? data.stats.unexpected : 0;
+              
+              // Cày xới file JSON để tìm Testcase bị fail
+              outer: for (const suite of (data.suites || [])) {
+                  for (const spec of (suite.specs || [])) {
+                      for (const test of (spec.tests || [])) {
+                          for (const res of (test.results || [])) {
+                              if (res.status === 'failed' || res.status === 'timedOut') {
+                                  testName = spec.title; // Lấy tên Testcase
+                                  if (res.error && res.error.message) {
+                                      // Cắt lấy tối đa 10 dòng lỗi đầu tiên cho gọn
+                                      errorMsg = res.error.message.split('\n').slice(0, 10).join('\n');
+                                  } else {
+                                      errorMsg = 'Lỗi không xác định (Có thể do Timeout hoặc Crash)';
+                                  }
+                                  break outer;
+                              }
+                          }
+                      }
+                  }
+              }
+          }
           
-          # Tạo sẵn thư mục để lệnh find không báo lỗi nếu thư mục không tồn tại
+          // Đẩy dữ liệu ra biến môi trường của GitHub
+          fs.appendFileSync(envFile, \`FAIL_COUNT=\${failCount}\n\`);
+          fs.appendFileSync(envFile, \`FAILED_TEST_NAME=\${testName}\n\`);
+          fs.appendFileSync(envFile, \`ERROR_MSG<<EOF\n\${errorMsg}\nEOF\n\`);
+          "
+          
+          # Tìm file ảnh chụp màn hình
           mkdir -p test-results
           PHOTO_PATH=$(find test-results -type f -name "*.png" | head -n 1)
-          
-          # Đẩy dữ liệu vào biến môi trường của GitHub Actions
-          echo "FAIL_COUNT=$FAIL_COUNT" >> $GITHUB_ENV
           echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
-          echo "ERROR_MSG<<EOF" >> $GITHUB_ENV
-          echo "$ERROR_MSG" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
 
       # 2. GỬI TIN NHẮN KHI PASS (Màu xanh)
       - name: Bắn thông báo Telegram (PASS)
@@ -77,7 +99,7 @@ jobs:
       - name: Bắn thông báo Telegram (FAIL)
         uses: appleboy/telegram-action@master
         if: failure()
-        continue-on-error: true # Đảm bảo luồng không chết nếu không tìm thấy ảnh
+        continue-on-error: true
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -88,7 +110,10 @@ jobs:
             ⚠️ Số lượng Testcase bị Fail: ${{ env.FAIL_COUNT }}
             👤 Kích hoạt bởi: ${{ github.actor }}
             
-            📝 CHI TIẾT LỖI (Testcase tiêu biểu):
+            🎯 TESTCASE LỖI: 
+            👉 ${{ env.FAILED_TEST_NAME }}
+            
+            📝 CHI TIẾT LỖI:
             ${{ env.ERROR_MSG }}
             
             🔗 Xem toàn bộ báo cáo tại:

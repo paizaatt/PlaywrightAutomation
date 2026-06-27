@@ -39,9 +39,9 @@ Received: true
       - link "Sign in" [ref=e20] [cursor=pointer]:
         - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
   - generic [ref=e22]:
-    - 'link "World Cup 2026: The Art of the Volley" [ref=e23] [cursor=pointer]':
-      - /url: /search?sca_esv=6519816469fe80b0&q=FIFA+World+Cup+2026+Standings&oi=ddle&noiga=1&ct=516786509&hl=en&stick=H4sIAAAAAAAA_-Mwe8SYyC3w8sc9YamISWtOXmMM4pIMLsgvKikOyS8tykvMTc0rCS5JzEvJzEsvFjLlYg1Ozi9IFdIR0uISgKjzTSxJznAvyi8tEBLjYvNJTUwvTRXikeLi4tDP1TcwNig05wEAOVMbw2YAAAA&sa=X&ved=0ahUKEwiVqazwuKeVAxUuEFkFHeSBEkQQPQgE
-      - 'img "World Cup 2026: The Art of the Volley" [ref=e25]'
+    - 'link "World Cup 2026: The Art of the Long Ball" [ref=e23] [cursor=pointer]':
+      - /url: /search?sca_esv=f7c1c784a1c56cc1&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=516786125&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwiaqcHUv6eVAxX5iO4BHXWoMfgQPQgE
+      - 'img "World Cup 2026: The Art of the Long Ball" [ref=e25]'
     - button "Share" [ref=e27]:
       - generic "Share" [ref=e28] [cursor=pointer]:
         - img [ref=e32]

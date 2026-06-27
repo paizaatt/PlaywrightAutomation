@@ -30,24 +30,30 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30  
-      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI (Chỉ chạy khi Fail)
+
+      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI (Chạy khi Fail)
       - name: Trích xuất thông tin lỗi và Hình ảnh
         if: failure()
         run: |
-          # Đếm số lượng test fail từ file JSON
-          FAIL_COUNT=$(jq '.errors | length' playwright-report/results.json)
+          REPORT_FILE="playwright-report/results.json"
           
-          # Lấy thông báo lỗi đầu tiên (cắt lấy 3 dòng đầu để tránh tin nhắn quá dài)
-          ERROR_MSG=$(jq -r '.errors[0].message' playwright-report/results.json | head -n 3)
+          # Kiểm tra xem file JSON có tồn tại không
+          if [ -f "$REPORT_FILE" ]; then
+            FAIL_COUNT=$(jq '.errors | length' "$REPORT_FILE")
+            # Lấy 15 dòng đầu của lỗi để đọc cho rõ ràng
+            ERROR_MSG=$(jq -r '.errors[0].message' "$REPORT_FILE" | head -n 15)
+          else
+            FAIL_COUNT="Không đếm được"
+            ERROR_MSG="Không tìm thấy file results.json. Hãy kiểm tra lại cấu hình Playwright."
+          fi
           
-          # Tìm file ảnh chụp màn hình (screenshot) đầu tiên sinh ra trong thư mục kết quả
-          PHOTO_PATH=$(find test-results -type f -name "*.png" -print -quit)
+          # Tạo sẵn thư mục để lệnh find không báo lỗi nếu thư mục không tồn tại
+          mkdir -p test-results
+          PHOTO_PATH=$(find test-results -type f -name "*.png" | head -n 1)
           
-          # Đẩy các biến này vào môi trường của GitHub để bước sau sử dụng
+          # Đẩy dữ liệu vào biến môi trường của GitHub Actions
           echo "FAIL_COUNT=$FAIL_COUNT" >> $GITHUB_ENV
           echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
-          
-          # Xử lý đoạn text lỗi có nhiều dòng
           echo "ERROR_MSG<<EOF" >> $GITHUB_ENV
           echo "$ERROR_MSG" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
@@ -87,7 +93,7 @@ jobs:
             
             🔗 Xem toàn bộ báo cáo tại:
             https://paizaatt.github.io/PlaywrightAutomation/
-            
+
       - name: Xuất báo cáo lên GitHub Pages (Xem Online)
         uses: peaceiris/actions-gh-pages@v4
         if: always()

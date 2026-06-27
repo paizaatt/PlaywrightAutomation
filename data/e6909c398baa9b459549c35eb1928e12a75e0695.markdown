@@ -1,0 +1,45 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: tests/e2e/run-custom-data.spec.ts >> Automation — Luồng Main() >> điền username, bank number, site mặc định và chạy Run with Custom Data
+- Location: tests/e2e/run-custom-data.spec.ts:7:7
+
+# Error details
+
+```
+Error: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL
+Call log:
+  - navigating to "/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import type { Page } from '@playwright/test';
+  2  | import { CustomAccountFormComponent } from '../components/custom-account-form.component';
+  3  | 
+  4  | export class AutomationPage {
+  5  |   readonly customAccountForm: CustomAccountFormComponent;
+  6  |   //tương đương
+  7  |   readonly jobOutput: ReturnType<Page['locator']>;
+  8  | 
+  9  |   constructor(private readonly page: Page) {
+  10 |     this.customAccountForm = new CustomAccountFormComponent(
+  11 |       page.locator('#run-form'),
+  12 |     );
+  13 |     this.jobOutput = page.locator('#job-output');
+  14 |   }
+  15 | 
+  16 |   async goto(): Promise<void> {
+> 17 |     await this.page.goto('/');
+     |                     ^ Error: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL
+  18 |   }
+  19 | }
+  20 | 
+```

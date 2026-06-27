@@ -1,0 +1,98 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: tests/e2e/check.spec.ts >> Kiểm tra fixture bắt log
+- Location: tests/e2e/check.spec.ts:4:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: false
+Received: true
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - link "About" [ref=e4] [cursor=pointer]:
+      - /url: https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header
+    - link "Store" [ref=e5] [cursor=pointer]:
+      - /url: https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - link "Gmail" [ref=e10] [cursor=pointer]:
+          - /url: https://mail.google.com/mail/&ogbl
+        - link "Search for Images" [ref=e12] [cursor=pointer]:
+          - /url: https://www.google.com/imghp?hl=en&ogbl
+          - text: Images
+      - button "Google apps" [ref=e15] [cursor=pointer]:
+        - img [ref=e16]
+      - link "Sign in" [ref=e20] [cursor=pointer]:
+        - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
+  - generic [ref=e22]:
+    - 'link "World Cup 2026: The Art of the Volley" [ref=e23] [cursor=pointer]':
+      - /url: /search?sca_esv=6519816469fe80b0&q=FIFA+World+Cup+2026+Standings&oi=ddle&noiga=1&ct=516786509&hl=en&stick=H4sIAAAAAAAA_-Mwe8SYyC3w8sc9YamISWtOXmMM4pIMLsgvKikOyS8tykvMTc0rCS5JzEvJzEsvFjLlYg1Ozi9IFdIR0uISgKjzTSxJznAvyi8tEBLjYvNJTUwvTRXikeLi4tDP1TcwNig05wEAOVMbw2YAAAA&sa=X&ved=0ahUKEwjS4Zums6eVAxUTM0QIHVQiG7gQPQgE
+      - 'img "World Cup 2026: The Art of the Volley" [ref=e25]'
+    - button "Share" [ref=e27]:
+      - generic "Share" [ref=e28] [cursor=pointer]:
+        - img [ref=e32]
+  - search [ref=e35]:
+    - generic [ref=e37]:
+      - generic [ref=e39]:
+        - img [ref=e43]
+        - combobox "Search" [active] [ref=e46]
+        - generic [ref=e48]:
+          - button "Search by voice" [ref=e49] [cursor=pointer]:
+            - img [ref=e50]
+          - button "Search by image" [ref=e52] [cursor=pointer]:
+            - img [ref=e53]
+      - generic [ref=e56]:
+        - button "Google Search" [ref=e57] [cursor=pointer]
+        - button "I'm Feeling Lucky" [ref=e58] [cursor=pointer]
+  - contentinfo [ref=e61]:
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - link "Advertising" [ref=e64] [cursor=pointer]:
+          - /url: https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1
+        - link "Business" [ref=e65] [cursor=pointer]:
+          - /url: https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1
+        - link "How Search works" [ref=e66] [cursor=pointer]:
+          - /url: https://google.com/search/howsearchworks/?fg=1
+      - link "Build, create, and do more with AI tools from Google" [ref=e68] [cursor=pointer]:
+        - /url: https://ai.google/helpful-tools/?utm_source=googlehpfooter&utm_medium=housepromos&utm_campaign=bottom-footer
+      - generic [ref=e69]:
+        - link "Privacy" [ref=e70] [cursor=pointer]:
+          - /url: https://policies.google.com/privacy?hl=en&fg=1
+        - link "Terms" [ref=e71] [cursor=pointer]:
+          - /url: https://policies.google.com/terms?hl=en&fg=1
+        - button "Settings" [ref=e75] [cursor=pointer]:
+          - generic [ref=e76]: Settings
+```
+
+# Test source
+
+```ts
+  1  | import { env } from '../../config/env.config';
+  2  | import { expect, test } from '../../src/fixtures/test.fixture';
+  3  | 
+  4  | test('Kiểm tra fixture bắt log', async ({ page }) => {
+  5  |     await page.goto('https://google.com');
+  6  |     
+  7  |     // Cố tình tạo một lỗi trong console trình duyệt
+  8  |     await page.evaluate(() => console.error('ĐÂY LÀ LỖI GIẢ ĐỂ TEST FIXTURE'));
+  9  |     
+  10 |     // Làm cho test thất bại để fixture thực hiện đính kèm log
+> 11 |     expect(true).toBe(false); 
+     |                  ^ Error: expect(received).toBe(expected) // Object.is equality
+  12 |   });
+  13 |   
+```

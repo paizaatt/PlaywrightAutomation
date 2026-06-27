@@ -1,0 +1,56 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: tests/api/quest/stages.spec.ts >> API — Quest Stages >> GET /api/quest/stages — response khớp OpenAPI schema
+- Location: tests/api/quest/stages.spec.ts:23:7
+
+# Error details
+
+```
+TypeError: apiRequestContext.get: Invalid URL
+```
+
+# Test source
+
+```ts
+  1  | import { expect, test } from '../../../src/fixtures/api.fixture';
+  2  | import { assertOpenApiResponse } from '../../../src/utils/openapi.validator';
+  3  | 
+  4  | test.describe('API — Quest Stages', () => {
+  5  |   test('GET /api/quest/stages trả về danh sách chapter khi đã login', async ({
+  6  |     authenticatedQuestService,
+  7  |   }) => {
+  8  |     const { response, body } = await authenticatedQuestService.stages.getStagesAndParse();
+  9  | 
+  10 |     expect(response.status()).toBe(200);
+  11 |     expect(Array.isArray(body)).toBe(true);
+  12 |     expect(body.length).toBeGreaterThan(0);
+  13 |     assertOpenApiResponse('GET', '/api/quest/stages', body);
+  14 |   });
+  15 | 
+  16 |   test('GET /api/quest/stages — stageOrder tăng dần', async ({ authenticatedQuestService }) => {
+  17 |     const { body } = await authenticatedQuestService.stages.getStagesAndParse();
+  18 |     const orders = body.map((stage) => stage.stageOrder);
+  19 | 
+  20 |     expect(orders).toEqual([...orders].sort((a, b) => a - b));
+  21 |   });
+  22 | 
+  23 |   test('GET /api/quest/stages — response khớp OpenAPI schema', async ({ request }) => {
+> 24 |     const response = await request.get('/api/quest/stages');
+     |                                    ^ TypeError: apiRequestContext.get: Invalid URL
+  25 |     const body = await response.json();
+  26 | 
+  27 |     console.log('\n[Test Debug] HTTP status:', response.status());
+  28 |     console.log('[Test Debug] Response URL:', response.url());
+  29 | 
+  30 |     expect(response.status()).toBe(200);
+  31 |     assertOpenApiResponse('GET', '/api/quest/stages', body, 200, { debug: true });
+  32 |   });
+  33 | });
+  34 | 
+```

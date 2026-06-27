@@ -16,7 +16,12 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : Math.ceil(os.cpus().length / 2),
-  reporter: [['html', { open: 'never' }], ['list']],
+  // Bổ sung thêm dòng xuất JSON vào mảng reporter
+  reporter: [
+    ['html', { open: 'never' }], 
+    ['list'],
+    ['json', { outputFile: 'playwright-report/results.json' }] // Dòng mới thêm
+  ],
   use: {
     // 1. CẤU HÌNH TRACE, SCREENSHOT, VIDEO
     trace: 'on-first-retry',

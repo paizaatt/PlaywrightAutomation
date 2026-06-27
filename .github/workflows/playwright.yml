@@ -30,21 +30,64 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30  
-      - name: Bắn thông báo Telegram
+      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI (Chỉ chạy khi Fail)
+      - name: Trích xuất thông tin lỗi và Hình ảnh
+        if: failure()
+        run: |
+          # Đếm số lượng test fail từ file JSON
+          FAIL_COUNT=$(jq '.errors | length' playwright-report/results.json)
+          
+          # Lấy thông báo lỗi đầu tiên (cắt lấy 3 dòng đầu để tránh tin nhắn quá dài)
+          ERROR_MSG=$(jq -r '.errors[0].message' playwright-report/results.json | head -n 3)
+          
+          # Tìm file ảnh chụp màn hình (screenshot) đầu tiên sinh ra trong thư mục kết quả
+          PHOTO_PATH=$(find test-results -type f -name "*.png" -print -quit)
+          
+          # Đẩy các biến này vào môi trường của GitHub để bước sau sử dụng
+          echo "FAIL_COUNT=$FAIL_COUNT" >> $GITHUB_ENV
+          echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
+          
+          # Xử lý đoạn text lỗi có nhiều dòng
+          echo "ERROR_MSG<<EOF" >> $GITHUB_ENV
+          echo "$ERROR_MSG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      # 2. GỬI TIN NHẮN KHI PASS (Màu xanh)
+      - name: Bắn thông báo Telegram (PASS)
         uses: appleboy/telegram-action@master
-        if: always() # Bắt buộc phải có dòng này để dù test Fail thì bot vẫn báo
+        if: success()
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            🤖 CẢNH BÁO CI/CD PLAYWRIGHT
+            ✅ [PASS] CẢNH BÁO CI/CD PLAYWRIGHT
             --------------------------------------
-            Trạng thái chạy: ${{ job.status == 'success' && '✅ PASS' || '❌ FAIL' }}
-            Kích hoạt bởi: ${{ github.actor }}
-            Nhánh cập nhật: ${{ github.ref_name }}
+            🎉 Tuyệt vời! Toàn bộ Testcase đều chạy thành công.
+            👤 Kích hoạt bởi: ${{ github.actor }}
+            🌿 Nhánh: ${{ github.ref_name }}
+            🔗 Báo cáo: https://paizaatt.github.io/PlaywrightAutomation/
+
+      # 3. GỬI TIN NHẮN KHI FAIL KÈM ẢNH (Màu đỏ)
+      - name: Bắn thông báo Telegram (FAIL)
+        uses: appleboy/telegram-action@master
+        if: failure()
+        continue-on-error: true # Đảm bảo luồng không chết nếu không tìm thấy ảnh
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          photo: ${{ env.PHOTO_PATH }}
+          message: |
+            ❌ [FAIL] CẢNH BÁO CI/CD PLAYWRIGHT
+            --------------------------------------
+            ⚠️ Số lượng Testcase bị Fail: ${{ env.FAIL_COUNT }}
+            👤 Kích hoạt bởi: ${{ github.actor }}
             
-            🔗 Xem báo cáo chi tiết tại:
-            https://paizaatt.github.io/PlaywrightAutomation/    
+            📝 CHI TIẾT LỖI (Testcase tiêu biểu):
+            ${{ env.ERROR_MSG }}
+            
+            🔗 Xem toàn bộ báo cáo tại:
+            https://paizaatt.github.io/PlaywrightAutomation/
+            
       - name: Xuất báo cáo lên GitHub Pages (Xem Online)
         uses: peaceiris/actions-gh-pages@v4
         if: always()

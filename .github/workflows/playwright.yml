@@ -31,7 +31,7 @@ jobs:
           path: playwright-report/
           retention-days: 30  
 
-      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Lấy nhiều Testcase)
+      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Fix lỗi lặp do Retries)
       - name: Trích xuất thông tin lỗi và Hình ảnh
         if: failure()
         run: |
@@ -43,7 +43,7 @@ jobs:
           const envFile = process.env.GITHUB_ENV;
           const reportPath = process.env.REPORT_FILE_PATH;
           
-          let failCount = 'Không đếm được';
+          let failCount = 'Không rõ';
           let errorDetails = 'Không tìm thấy file results.json.';
 
           if (reportPath && fs.existsSync(reportPath)) {
@@ -51,31 +51,45 @@ jobs:
               failCount = data.stats ? data.stats.unexpected : 0;
               
               let failedTests = [];
-              for (const suite of (data.suites || [])) {
-                  for (const spec of (suite.specs || [])) {
-                      for (const test of (spec.tests || [])) {
-                          for (const res of (test.results || [])) {
-                              if (res.status === 'failed' || res.status === 'timedOut') {
-                                  let testName = spec.title;
-                                  // Cắt lấy tối đa 3 dòng lỗi của mỗi testcase để tin nhắn không bị tràn
-                                  let errMsg = res.error && res.error.message ? res.error.message.split('\n').slice(0, 3).join('\n') : 'Lỗi không xác định';
-                                  failedTests.push('👉 TEST: ' + testName + '\n' + errMsg);
+
+              // Hàm đệ quy để đào sâu vào mọi folder/describe block trong file JSON
+              function extractFailures(suites) {
+                  for (const suite of suites) {
+                      for (const spec of (suite.specs || [])) {
+                          // spec.ok = false nghĩa là Testcase chốt hạ là Fail (đã bỏ qua các lần retry)
+                          if (spec.ok === false) {
+                              let testName = spec.title;
+                              let errMsg = 'Lỗi không xác định';
+
+                              // Lấy message lỗi từ lần chạy cuối cùng bị fail
+                              for (const test of (spec.tests || [])) {
+                                  for (const res of (test.results || [])) {
+                                      if ((res.status === 'failed' || res.status === 'timedOut') && res.error && res.error.message) {
+                                          errMsg = res.error.message.split('\n').slice(0, 3).join('\n');
+                                      }
+                                  }
                               }
+                              failedTests.push('👉 TEST: ' + testName + '\n' + errMsg);
                           }
+                      }
+                      // Nếu có thư mục con, đệ quy gọi lại chính nó
+                      if (suite.suites) {
+                          extractFailures(suite.suites);
                       }
                   }
               }
+
+              extractFailures(data.suites || []);
               
               if (failedTests.length > 0) {
-                  // Chỉ lấy tối đa 3 lỗi đầu tiên để gửi Telegram
                   const displayCount = Math.min(failedTests.length, 3);
                   errorDetails = failedTests.slice(0, displayCount).join('\n\n');
                   
                   if (failedTests.length > 3) {
-                      errorDetails += '\n\n... và ' + (failedTests.length - 3) + ' testcases khác. (Vui lòng xem chi tiết trong link báo cáo).';
+                      errorDetails += '\n\n... và ' + (failedTests.length - 3) + ' testcases khác bị lỗi.';
                   }
               } else {
-                  errorDetails = 'Không trích xuất được chi tiết lỗi.';
+                  errorDetails = 'Không trích xuất được chi tiết lỗi (có thể lỗi xảy ra ở Hook BeforeAll/AfterAll).';
               }
           }
           

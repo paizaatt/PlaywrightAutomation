@@ -106,8 +106,9 @@ jobs:
       # CÁC BƯỚC XỬ LÝ TELEGRAM (Y hệt như bạn đang có)
       # -----------------------------------------------------------------
       
+     # 1. BƯỚC TRÍCH XUẤT (Bỏ if: failure, luôn chạy để tự check kết quả)
       - name: Trích xuất thông tin lỗi và Hình ảnh
-        if: failure()
+        if: always()
         run: |
           REPORT_FILE=$(find . -type f -name "results.json" | head -n 1)
           export REPORT_FILE_PATH="$REPORT_FILE"
@@ -116,53 +117,65 @@ jobs:
           const fs = require('fs');
           const envFile = process.env.GITHUB_ENV;
           const reportPath = process.env.REPORT_FILE_PATH;
-          let failCount = 'Không rõ';
-          let errorDetails = 'Không tìm thấy file results.json.';
+          
+          let failCount = 0;
+          let isFailed = 'false';
+          let errorDetails = '';
+
           if (reportPath && fs.existsSync(reportPath)) {
               const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
               failCount = data.stats ? data.stats.unexpected : 0;
-              let failedTests = [];
-              function extractFailures(suites) {
-                  for (const suite of suites) {
-                      for (const spec of (suite.specs || [])) {
-                          if (spec.ok === false) {
-                              let testName = spec.title;
-                              let errMsg = 'Lỗi không xác định';
-                              for (const test of (spec.tests || [])) {
-                                  for (const res of (test.results || [])) {
-                                      if ((res.status === 'failed' || res.status === 'timedOut') && res.error && res.error.message) {
-                                          errMsg = res.error.message.split('\n').slice(0, 3).join('\n');
+              
+              if (failCount > 0) {
+                  isFailed = 'true';
+                  let failedTests = [];
+                  function extractFailures(suites) {
+                      for (const suite of suites) {
+                          for (const spec of (suite.specs || [])) {
+                              if (spec.ok === false) {
+                                  let testName = spec.title;
+                                  let errMsg = 'Lỗi không xác định';
+                                  for (const test of (spec.tests || [])) {
+                                      for (const res of (test.results || [])) {
+                                          if ((res.status === 'failed' || res.status === 'timedOut') && res.error && res.error.message) {
+                                              errMsg = res.error.message.split('\n').slice(0, 3).join('\n');
+                                          }
                                       }
                                   }
+                                  failedTests.push('👉 TEST: ' + testName + '\n' + errMsg);
                               }
-                              failedTests.push('👉 TEST: ' + testName + '\n' + errMsg);
                           }
+                          if (suite.suites) extractFailures(suite.suites);
                       }
-                      if (suite.suites) extractFailures(suite.suites);
+                  }
+                  extractFailures(data.suites || []);
+                  
+                  if (failedTests.length > 0) {
+                      const displayCount = Math.min(failedTests.length, 3);
+                      errorDetails = failedTests.slice(0, displayCount).join('\n\n');
+                      if (failedTests.length > 3) {
+                          errorDetails += '\n\n... và ' + (failedTests.length - 3) + ' testcases khác bị lỗi.';
+                      }
                   }
               }
-              extractFailures(data.suites || []);
-              
-              if (failedTests.length > 0) {
-                  const displayCount = Math.min(failedTests.length, 3);
-                  errorDetails = failedTests.slice(0, displayCount).join('\n\n');
-                  if (failedTests.length > 3) {
-                      errorDetails += '\n\n... và ' + (failedTests.length - 3) + ' testcases khác bị lỗi.';
-                  }
-              } else {
-                  errorDetails = 'Không trích xuất được chi tiết lỗi.';
-              }
+          } else {
+              isFailed = 'true';
+              failCount = 'Không rõ';
+              errorDetails = 'Lỗi: Không tìm thấy file results.json sau khi merge.';
           }
+          
+          fs.appendFileSync(envFile, 'IS_FAILED=' + isFailed + '\n');
           fs.appendFileSync(envFile, 'FAIL_COUNT=' + failCount + '\n');
-          fs.appendFileSync(envFile, 'ERROR_MSG<<EOF\n' + errorDetails + '\nEOF\n');
+          fs.appendFileSync(envFile, 'ERROR_MSG<<EOF\n' + (errorDetails || 'Không có lỗi') + '\nEOF\n');
           "
           
           PHOTO_PATH=$(find . -type f -name "*.png" | head -n 1)
           echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
 
+      # 2. GỬI TELEGRAM (Kiểm tra bằng biến IS_FAILED tự tạo)
       - name: Bắn thông báo Telegram (PASS)
         uses: appleboy/telegram-action@master
-        if: success()
+        if: env.IS_FAILED == 'false'
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -176,8 +189,7 @@ jobs:
 
       - name: Bắn thông báo Telegram (FAIL)
         uses: appleboy/telegram-action@master
-        if: failure()
-        continue-on-error: true
+        if: env.IS_FAILED == 'true'
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -190,17 +202,14 @@ jobs:
             📝 CHI TIẾT CÁC LỖI (Tối đa 3 case):
             ${{ env.ERROR_MSG }}
             
-            🔗 Xem toàn bộ báo cáo tại:
+            🔗 Xem báo cáo tại:
             https://paizaatt.github.io/PlaywrightAutomation/
 
       - name: Gửi ảnh chụp màn hình lỗi (Tự động quét)
-        if: failure()
-        continue-on-error: true
+        if: env.IS_FAILED == 'true'
         run: |
           PHOTOS=$(find . -type f -name "*.png" -not -path "*/node_modules/*" | head -n 3)
-          if [ -z "$PHOTOS" ]; then
-            exit 0
-          fi
+          if [ -z "$PHOTOS" ]; then exit 0; fi
           for PHOTO in $PHOTOS; do
             FILENAME=$(basename "$PHOTO")
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendPhoto" \
@@ -216,3 +225,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./playwright-report
           publish_branch: gh-pages
+
+      # 3. ÉP GITHUB ACTIONS BÁO ĐỎ NẾU CÓ LỖI (ĐỂ PIPELINE KHÔNG BỊ XANH ẢO)
+      - name: Đánh dấu Pipeline là Failed
+        if: env.IS_FAILED == 'true'
+        run: exit 1

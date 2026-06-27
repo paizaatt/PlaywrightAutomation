@@ -19,6 +19,13 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    # Khai báo chia luồng chạy thành 3 máy ảo song song (Sharding)
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3] # Tương ứng Máy 1, Máy 2, Máy 3
+        shardTotal: [3]       # Tổng số lượng máy chia ra
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,20 +48,15 @@ jobs:
       - name: Cài đặt Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
-
+ 
+      # 4. Chạy Testcase với Sharding
       - name: Run Playwright tests
-        run: npm test
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         env:
           BASE_URL: ${{ vars.BASE_URL || 'http://localhost:8080' }}
           API_BASE_URL: ${{ vars.API_BASE_URL || 'https://be-truytimkhobau-sc.attops.net' }}
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30  
 
-      # 1. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Fix lỗi lặp do Retries)
+      # 4. BƯỚC TRÍCH XUẤT DỮ LIỆU LỖI BẰNG NODE.JS (Fix lỗi lặp do Retries)
       - name: Trích xuất thông tin lỗi và Hình ảnh
         if: failure()
         run: |
@@ -123,7 +125,7 @@ jobs:
           PHOTO_PATH=$(find . -type f -name "*.png" | head -n 1)
           echo "PHOTO_PATH=$PHOTO_PATH" >> $GITHUB_ENV
 
-      # 2. GỬI TIN NHẮN KHI PASS (Màu xanh)
+      # 5. GỬI TIN NHẮN KHI PASS (Màu xanh)
       - name: Bắn thông báo Telegram (PASS)
         uses: appleboy/telegram-action@master
         if: success()
@@ -138,7 +140,7 @@ jobs:
             🌿 Nhánh: ${{ github.ref_name }}
             🔗 Báo cáo: https://paizaatt.github.io/PlaywrightAutomation/
 
-      # 3. GỬI TIN NHẮN KHI FAIL KÈM ẢNH (Màu đỏ)
+      # 6. GỬI TIN NHẮN KHI FAIL KÈM ẢNH (Màu đỏ)
       - name: Bắn thông báo Telegram (FAIL)
         uses: appleboy/telegram-action@master
         if: failure()

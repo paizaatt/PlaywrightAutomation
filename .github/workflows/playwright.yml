@@ -9,6 +9,15 @@ on:
       - 'docs/**'
       - '.gitignore'
 
+# 1. CHỨC NĂNG CRONJOB TỰ ĐỘNG CHẠY MỖI ĐÊM
+  schedule:
+    # Cú pháp: Phút(0-59) Giờ(0-23) Ngày_Trong_Tháng(*) Tháng(*) Ngày_Trong_Tuần(*)
+    # 0 19 * * * nghĩa là: 19 giờ 00 phút UTC mỗi ngày (Tức là 02:00 sáng giờ VN)
+    - cron: '0 19 * * *'
+
+  # 2. BÙA HỘ MỆNH: CHO PHÉP BẤM NÚT CHẠY BẰNG TAY (Nên có)
+  workflow_dispatch:
+
 jobs:
   # ==========================================
   # JOB 1: CHẠY TEST SONG SONG TRÊN 3 MÁY (SHARDING)

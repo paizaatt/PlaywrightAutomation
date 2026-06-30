@@ -39,9 +39,9 @@ Received: true
       - link "Sign in" [ref=e20] [cursor=pointer]:
         - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
   - generic [ref=e22]:
-    - 'link "World Cup 2026: The Art of the Nutmeg" [ref=e23] [cursor=pointer]':
-      - /url: /search?sca_esv=cb59d3f0547732b2&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=460150075&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwil64KMqa2VAxXIJUQIHTncBqsQPQgE
-      - 'img "World Cup 2026: The Art of the Nutmeg" [ref=e25]'
+    - 'link "World Cup 2026: The Art of the Penalty Kick" [ref=e23] [cursor=pointer]':
+      - /url: /search?sca_esv=ea6914c6065b5ac3&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=516785959&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwibsb2Y7K-VAxVwLFkFHdw9BV0QPQgE
+      - 'img "World Cup 2026: The Art of the Penalty Kick" [ref=e25]'
     - button "Share" [ref=e27]:
       - generic "Share" [ref=e28] [cursor=pointer]:
         - img [ref=e32]
@@ -58,25 +58,24 @@ Received: true
       - generic [ref=e56]:
         - button "Google Search" [ref=e57] [cursor=pointer]
         - button "I'm Feeling Lucky" [ref=e58] [cursor=pointer]
-  - link "⚽ Relive the top moments of the group stage with AI Mode" [ref=e68] [cursor=pointer]
-  - contentinfo [ref=e70]:
-    - generic [ref=e71]:
-      - generic [ref=e72]:
-        - link "Advertising" [ref=e73] [cursor=pointer]:
+  - contentinfo [ref=e61]:
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - link "Advertising" [ref=e64] [cursor=pointer]:
           - /url: https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1
-        - link "Business" [ref=e74] [cursor=pointer]:
+        - link "Business" [ref=e65] [cursor=pointer]:
           - /url: https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1
-        - link "How Search works" [ref=e75] [cursor=pointer]:
+        - link "How Search works" [ref=e66] [cursor=pointer]:
           - /url: https://google.com/search/howsearchworks/?fg=1
-      - link "Build, create, and do more with AI tools from Google" [ref=e77] [cursor=pointer]:
+      - link "Build, create, and do more with AI tools from Google" [ref=e68] [cursor=pointer]:
         - /url: https://ai.google/helpful-tools/?utm_source=googlehpfooter&utm_medium=housepromos&utm_campaign=bottom-footer
-      - generic [ref=e78]:
-        - link "Privacy" [ref=e79] [cursor=pointer]:
+      - generic [ref=e69]:
+        - link "Privacy" [ref=e70] [cursor=pointer]:
           - /url: https://policies.google.com/privacy?hl=en&fg=1
-        - link "Terms" [ref=e80] [cursor=pointer]:
+        - link "Terms" [ref=e71] [cursor=pointer]:
           - /url: https://policies.google.com/terms?hl=en&fg=1
-        - button "Settings" [ref=e84] [cursor=pointer]:
-          - generic [ref=e85]: Settings
+        - button "Settings" [ref=e75] [cursor=pointer]:
+          - generic [ref=e76]: Settings
 ```
 
 # Test source

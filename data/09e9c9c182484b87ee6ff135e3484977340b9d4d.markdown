@@ -39,9 +39,9 @@ Received: true
       - link "Sign in" [ref=e20] [cursor=pointer]:
         - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
   - generic [ref=e22]:
-    - 'link "World Cup 2026: The Art of the Penalty Kick" [ref=e23] [cursor=pointer]':
-      - /url: /search?sca_esv=ea6914c6065b5ac3&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=516785959&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwibsb2Y7K-VAxVwLFkFHdw9BV0QPQgE
-      - 'img "World Cup 2026: The Art of the Penalty Kick" [ref=e25]'
+    - 'link "World Cup 2026: United States Match Day" [ref=e23] [cursor=pointer]':
+      - /url: /search?sca_esv=05ee508a17931f71&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=529356412&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwjTid_CrLKVAxUwF1kFHV6tJYkQPQgE
+      - 'img "World Cup 2026: United States Match Day" [ref=e25]'
     - button "Share" [ref=e27]:
       - generic "Share" [ref=e28] [cursor=pointer]:
         - img [ref=e32]

@@ -39,9 +39,9 @@ Received: true
       - link "Sign in" [ref=e20] [cursor=pointer]:
         - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
   - generic [ref=e22]:
-    - 'link "World Cup 2026: United States Match Day" [ref=e23] [cursor=pointer]':
-      - /url: /search?sca_esv=05ee508a17931f71&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=529356412&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwjTid_CrLKVAxUwF1kFHV6tJYkQPQgE
-      - 'img "World Cup 2026: United States Match Day" [ref=e25]'
+    - 'link "World Cup 2026: The Art of the Step Over" [ref=e23] [cursor=pointer]':
+      - /url: /search?sca_esv=56f188250b95d3ec&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=516786414&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwiD3KS257SVAxXpF1kFHZlhAtoQPQgE
+      - 'img "World Cup 2026: The Art of the Step Over" [ref=e25]'
     - button "Share" [ref=e27]:
       - generic "Share" [ref=e28] [cursor=pointer]:
         - img [ref=e32]

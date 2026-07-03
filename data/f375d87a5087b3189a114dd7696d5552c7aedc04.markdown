@@ -39,9 +39,9 @@ Received: true
       - link "Sign in" [ref=e20] [cursor=pointer]:
         - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
   - generic [ref=e22]:
-    - 'link "World Cup 2026: The Art of the Step Over" [ref=e23] [cursor=pointer]':
-      - /url: /search?sca_esv=56f188250b95d3ec&q=FIFA+World+Cup+2026&oi=ddle&noiga=1&ct=516786414&hl=en&stick=H4sIAAAAAAAC_-NgVuLQz9U3MDYoNJ_AwriIVdjN081RITy_KCdFwbm0QMHIwMgMAKor_7IlAAAA&sa=X&ved=0ahUKEwiD3KS257SVAxXpF1kFHZlhAtoQPQgE
-      - 'img "World Cup 2026: The Art of the Step Over" [ref=e25]'
+    - 'link "Fourth of July 2026: Celebrating 250 years of the USA" [ref=e23] [cursor=pointer]':
+      - /url: /search?sca_esv=3f4266fc222e9222&q=Fourth+of+July+&oi=ddle&noiga=1&ct=458094442&hl=en&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60yXIOFS35v0DKD4kU3tu6_mOy2cFLAKF9D7oxeP4u9zrEUcT5cnYY-F0ss71iRJTz_Yg0SSOuK-CoDny45sZVB7z4Kp49jsrH5_qryCKxHwtcp88UOfTQtrO5jldrryoNfTUZBRQ%3D&sa=X&ved=0ahUKEwjRip-4qLeVAxUyLEQIHbsnCXwQPQgE
+      - 'img "Fourth of July 2026: Celebrating 250 years of the USA" [ref=e25]'
     - button "Share" [ref=e27]:
       - generic "Share" [ref=e28] [cursor=pointer]:
         - img [ref=e32]

@@ -40,7 +40,7 @@ Received: true
         - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=futura_exp_og_so_72776762_e
   - generic [ref=e22]:
     - 'link "Fourth of July 2026: Celebrating 250 years of the USA" [ref=e23] [cursor=pointer]':
-      - /url: /search?sca_esv=3f4266fc222e9222&q=Fourth+of+July+&oi=ddle&noiga=1&ct=458094442&hl=en&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60yXIOFS35v0DKD4kU3tu6_mOy2cFLAKF9D7oxeP4u9zrEUcT5cnYY-F0ss71iRJTz_Yg0SSOuK-CoDny45sZVB7z4Kp49jsrH5_qryCKxHwtcp88UOfTQtrO5jldrryoNfTUZBRQ%3D&sa=X&ved=0ahUKEwjRip-4qLeVAxUyLEQIHbsnCXwQPQgE
+      - /url: /search?sca_esv=91c0d796bc89922b&q=Fourth+of+July+&oi=ddle&noiga=1&ct=458094442&hl=en&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60yXIOFS35v0DKD4kU3tu6_mOy2cFLAKF9D7oxeP4u9zrEUcT5cnYY-F0ss71iRJTz_Yg0SSOuK-CoDny45sZVB7z4Kp49jsrH5_qryCKxHwtcp88UOfTQtrO5jldrryoNfTUZBRQ%3D&sa=X&ved=0ahUKEwjJ1ZKD6bmVAxViNYYAHc4cGOMQPQgE
       - 'img "Fourth of July 2026: Celebrating 250 years of the USA" [ref=e25]'
     - button "Share" [ref=e27]:
       - generic "Share" [ref=e28] [cursor=pointer]:
@@ -58,24 +58,28 @@ Received: true
       - generic [ref=e56]:
         - button "Google Search" [ref=e57] [cursor=pointer]
         - button "I'm Feeling Lucky" [ref=e58] [cursor=pointer]
-  - contentinfo [ref=e61]:
-    - generic [ref=e62]:
-      - generic [ref=e63]:
-        - link "Advertising" [ref=e64] [cursor=pointer]:
+  - generic [ref=e67]:
+    - img [ref=e70]
+    - generic [ref=e71]: Happy Fourth of July!
+    - link "Celebrate 250 years of the USA" [ref=e72] [cursor=pointer]
+  - contentinfo [ref=e74]:
+    - generic [ref=e75]:
+      - generic [ref=e76]:
+        - link "Advertising" [ref=e77] [cursor=pointer]:
           - /url: https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1
-        - link "Business" [ref=e65] [cursor=pointer]:
+        - link "Business" [ref=e78] [cursor=pointer]:
           - /url: https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1
-        - link "How Search works" [ref=e66] [cursor=pointer]:
+        - link "How Search works" [ref=e79] [cursor=pointer]:
           - /url: https://google.com/search/howsearchworks/?fg=1
-      - link "Build, create, and do more with AI tools from Google" [ref=e68] [cursor=pointer]:
+      - link "Build, create, and do more with AI tools from Google" [ref=e81] [cursor=pointer]:
         - /url: https://ai.google/helpful-tools/?utm_source=googlehpfooter&utm_medium=housepromos&utm_campaign=bottom-footer
-      - generic [ref=e69]:
-        - link "Privacy" [ref=e70] [cursor=pointer]:
+      - generic [ref=e82]:
+        - link "Privacy" [ref=e83] [cursor=pointer]:
           - /url: https://policies.google.com/privacy?hl=en&fg=1
-        - link "Terms" [ref=e71] [cursor=pointer]:
+        - link "Terms" [ref=e84] [cursor=pointer]:
           - /url: https://policies.google.com/terms?hl=en&fg=1
-        - button "Settings" [ref=e75] [cursor=pointer]:
-          - generic [ref=e76]: Settings
+        - button "Settings" [ref=e88] [cursor=pointer]:
+          - generic [ref=e89]: Settings
 ```
 
 # Test source

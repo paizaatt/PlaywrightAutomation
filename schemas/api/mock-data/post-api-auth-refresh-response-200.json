@@ -1,0 +1,9 @@
+{
+  "dtoName": "post-api-auth-refresh-response-200",
+  "updatedAt": "2026-07-07T15:18:27.773Z",
+  "source": "jsf",
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }
+}

@@ -18,9 +18,9 @@ export default defineConfig({
   workers: process.env.CI ? 2 : Math.ceil(os.cpus().length / 2),
   // Bổ sung thêm dòng xuất JSON vào mảng reporter
   reporter: [
-    ['html', { open: 'never' }], 
+    ['html', { open: 'never' }],
     ['list'],
-    ['json', { outputFile: 'config/playwright-report/results.json' }] // Dòng mới thêm
+    ['json', { outputFile: 'config/playwright-report/results.json' }], // Dòng mới thêm
   ],
   use: {
     // 1. CẤU HÌNH TRACE, SCREENSHOT, VIDEO
@@ -30,18 +30,18 @@ export default defineConfig({
 
     // 2. CẤU HÌNH MẠNG & ĐƯỜNG DẪN (NÊN THÊM)
     // Tận dụng biến môi trường bạn đã setup ở file playwright.yml
-    baseURL: process.env.BASE_URL || 'https://f8betbb1.vip/', 
+    baseURL: process.env.BASE_URL || 'https://f8betbb1.vip/',
 
     // 3. CẤU HÌNH TIMEOUT (NÊN THÊM)
     // Giới hạn thời gian tối đa cho 1 thao tác (click, fill, hover...) để tránh test bị treo vô hạn
-    actionTimeout: 15000, 
+    actionTimeout: 15000,
     // Giới hạn thời gian tối đa khi chuyển trang (page.goto)
     navigationTimeout: 30000,
 
     // 4. CẤU HÌNH GIAO DIỆN TRÌNH DUYỆT (NÊN THÊM)
     // Đảm bảo kích thước màn hình luôn đồng nhất giữa máy Local và máy ảo GitHub
     viewport: { width: 1920, height: 1080 },
-    
+
     // Bỏ qua lỗi chứng chỉ SSL (Rất hữu ích khi test ở môi trường Staging/Dev chưa có HTTPS chuẩn)
     ignoreHTTPSErrors: true,
   },
@@ -75,6 +75,12 @@ export default defineConfig({
     {
       name: 'API-Tests',
       testMatch: /\/api\/auth\/.*\.spec\.ts|\/api\/.*\/.*-unauthorized\.spec\.ts/,
+      testIgnore: /\/api\/mock\/.*\.spec\.ts/,
+      use: apiUse,
+    },
+    {
+      name: 'API-Mock-Contract',
+      testMatch: /\/api\/mock\/.*\.spec\.ts/,
       use: apiUse,
     },
     {
@@ -87,7 +93,7 @@ export default defineConfig({
     {
       name: 'API-Tests-co-cookie',
       testMatch: /\/api\/(?!auth\/).*\.spec\.ts/,
-      testIgnore: /-unauthorized\.spec\.ts/,
+      testIgnore: /-unauthorized\.spec\.ts|\/api\/mock\/.*\.spec\.ts/,
       use: {
         ...apiUse,
         storageState: apiAuthStoragePath,

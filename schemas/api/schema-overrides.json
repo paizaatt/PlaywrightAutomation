@@ -1,11 +1,117 @@
 {
   "$comment": "Override schemas broken in BE Swagger export (nested type: \"a\" instead of $ref). Re-fetch openapi.json and remove entries once BE is fixed.",
   "schemas": {
+    "StatusResponseDto": {
+      "properties": {
+        "collectedChars": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "enum": ["S", "C", "8"]
+          }
+        },
+        "stages": {
+          "type": "array",
+          "items": { "$ref": "#/components/schemas/StageDto" }
+        }
+      }
+    },
     "StageDto": {
       "properties": {
         "conditions": {
           "type": "array",
           "items": { "$ref": "#/components/schemas/StageConditionDto" }
+        }
+      }
+    },
+    "ChestDto": {
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": { "$ref": "#/components/schemas/StageConditionDto" }
+        }
+      }
+    },
+    "ChestsResponseDto": {
+      "properties": {
+        "allStageConditionsMet": {
+          "type": "boolean",
+          "example": true,
+          "nullable": true,
+          "description": "Đã đạt tất cả điều kiện chặng chưa"
+        }
+      }
+    },
+    "OpenChestSuccessDto": {
+      "properties": {
+        "nextChestIndex": {
+          "type": "number",
+          "example": 1,
+          "nullable": true,
+          "description": "Chỉ số rương tiếp theo (null nếu đã hết)"
+        }
+      }
+    },
+    "SpinPrizeDto": {
+      "type": "object",
+      "properties": {
+        "configCode": {
+          "type": "string",
+          "example": "prize_50k",
+          "description": "Mã ô thưởng"
+        },
+        "label": {
+          "type": "string",
+          "example": "50,000 VND",
+          "description": "Nhãn ô thưởng"
+        },
+        "rewardType": {
+          "type": "string",
+          "example": "point",
+          "enum": ["point", "gift"],
+          "description": "Loại thưởng"
+        },
+        "pointValue": {
+          "type": "string",
+          "example": "50,000",
+          "nullable": true,
+          "description": "Giá trị điểm nếu rewardType=point"
+        },
+        "giftName": {
+          "type": "string",
+          "example": null,
+          "nullable": true,
+          "description": "Tên quà nếu rewardType=gift"
+        }
+      },
+      "required": ["configCode", "label", "rewardType", "pointValue", "giftName"]
+    },
+    "SpinStatusResponseDto": {
+      "properties": {
+        "collectedChars": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["S", "C", "8"]
+          }
+        },
+        "missingChars": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["S", "C", "8"]
+          }
+        },
+        "spinResult": {
+          "type": "object",
+          "nullable": true,
+          "allOf": [{ "$ref": "#/components/schemas/SpinResultDto" }],
+          "description": "Kết quả quay (nếu đã quay)"
+        },
+        "prizes": {
+          "type": "array",
+          "items": { "$ref": "#/components/schemas/SpinPrizeDto" }
         }
       }
     }

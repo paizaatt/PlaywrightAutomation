@@ -1,0 +1,38 @@
+{
+  "dtoName": "ChestDto",
+  "updatedAt": "2026-07-07T15:18:27.620Z",
+  "source": "jsf",
+  "data": {
+    "index": 0,
+    "label": "Rương 1",
+    "isCharChest": false,
+    "isTrap": false,
+    "opened": false,
+    "rewardAmount": 50000,
+    "milestoneMet": true,
+    "conditions": [
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      },
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      },
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      }
+    ],
+    "allConditionsMet": true
+  }
+}

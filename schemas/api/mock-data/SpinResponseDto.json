@@ -1,0 +1,15 @@
+{
+  "dtoName": "SpinResponseDto",
+  "updatedAt": "2026-07-07T15:18:27.690Z",
+  "source": "jsf",
+  "data": {
+    "ok": true,
+    "configCode": "prize_50k",
+    "label": "50,000 VND",
+    "rewardType": "point",
+    "pointValue": "50,000",
+    "giftName": null,
+    "dispatched": true,
+    "message": "Chúc mừng! Bạn đã trúng 50,000 VND!"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "dtoName": "StageConditionDto",
+  "updatedAt": "2026-07-07T15:18:27.710Z",
+  "source": "jsf",
+  "data": {
+    "type": "deposit",
+    "label": "Nạp tiền",
+    "required": 1000000,
+    "current": 500000,
+    "met": false
+  }
+}

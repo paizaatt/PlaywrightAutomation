@@ -1,0 +1,8 @@
+{
+  "dtoName": "get-api-auth-config-response-200",
+  "updatedAt": "2026-07-07T15:18:27.746Z",
+  "source": "jsf",
+  "data": {
+    "turnstileEnabled": true
+  }
+}

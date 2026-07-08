@@ -1,0 +1,49 @@
+{
+  "dtoName": "get-api-spin-wheel-status-response-200",
+  "updatedAt": "2026-07-07T15:18:27.820Z",
+  "source": "jsf",
+  "data": {
+    "eligible": true,
+    "alreadySpun": false,
+    "collectedChars": [
+      "C",
+      "S",
+      "C"
+    ],
+    "missingChars": [
+      "8",
+      "8",
+      "S"
+    ],
+    "spinResult": {
+      "configCode": "prize_50k",
+      "rewardType": "point",
+      "pointValue": "50,000",
+      "giftName": null,
+      "spunAt": "2024-01-15T10:30:00.000Z"
+    },
+    "prizes": [
+      {
+        "configCode": "prize_50k",
+        "label": "50,000 VND",
+        "rewardType": "point",
+        "pointValue": "50,000",
+        "giftName": null
+      },
+      {
+        "configCode": "prize_50k",
+        "label": "50,000 VND",
+        "rewardType": "point",
+        "pointValue": "50,000",
+        "giftName": null
+      },
+      {
+        "configCode": "prize_50k",
+        "label": "50,000 VND",
+        "rewardType": "point",
+        "pointValue": "50,000",
+        "giftName": null
+      }
+    ]
+  }
+}

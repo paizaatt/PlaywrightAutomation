@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import Ajv, { type AnySchema, type ErrorObject, type ValidateFunction } from 'ajv';
 import addFormats from 'ajv-formats';
 import openapiSpec from '../../schemas/api/openapi.json';
@@ -7,6 +9,7 @@ const OPENAPI_ID = 'openapi-spec';
 
 type JsonSchema = Record<string, unknown>;
 
+//chỉ mô tả shape ko validate
 type OpenApiOperation = {
   responses?: Record<string, { content?: Record<string, { schema?: JsonSchema }> }>;
   requestBody?: { content?: Record<string, { schema?: JsonSchema }> };
@@ -26,6 +29,14 @@ function isPlainObject(value: unknown): value is JsonSchema {
 }
 
 function deepMerge(target: JsonSchema, source: JsonSchema): JsonSchema {
+  if (
+    typeof source.$ref === 'string' ||
+    typeof source.type === 'string' ||
+    Array.isArray(source.type)
+  ) {
+    return { ...source };
+  }
+
   const merged = { ...target };
 
   for (const [key, value] of Object.entries(source)) {
@@ -39,6 +50,7 @@ function deepMerge(target: JsonSchema, source: JsonSchema): JsonSchema {
   return merged;
 }
 
+//chuẩn hóa các schema trong openapi.json sử dụng đệ quy
 function normalizeOpenApiSchema(value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map(normalizeOpenApiSchema);
@@ -281,12 +293,7 @@ class OpenApiValidator {
     );
   }
 
-  assertRequest(
-    method: string,
-    path: string,
-    data: unknown,
-    options?: { debug?: boolean },
-  ): void {
+  assertRequest(method: string, path: string, data: unknown, options?: { debug?: boolean }): void {
     const context = this.resolveRequestValidation(method, path);
     const isValid = context.validate(data);
 
@@ -306,7 +313,9 @@ class OpenApiValidator {
     }
 
     if (!isValid) {
-      throw new Error(`${context.label} failed OpenAPI validation:\n${formatErrors(context.validate.errors)}`);
+      throw new Error(
+        `${context.label} failed OpenAPI validation:\n${formatErrors(context.validate.errors)}`,
+      );
     }
   }
 
@@ -338,7 +347,9 @@ class OpenApiValidator {
     }
 
     if (!isValid) {
-      throw new Error(`${context.label} failed OpenAPI validation:\n${formatErrors(context.validate.errors)}`);
+      throw new Error(
+        `${context.label} failed OpenAPI validation:\n${formatErrors(context.validate.errors)}`,
+      );
     }
   }
 }

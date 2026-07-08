@@ -59,7 +59,7 @@ jobs:
 
       # Chạy Test chia luồng (Thêm cờ --reporter=blob để chỉ xuất dữ liệu thô)
       - name: Run Playwright tests
-        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
+        run: npx playwright test --config=config/playwright.config.ts --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
         env:
           BASE_URL: ${{ vars.BASE_URL || 'http://localhost:8080' }}
           API_BASE_URL: ${{ vars.API_BASE_URL || 'https://be-truytimkhobau-sc.attops.net' }}

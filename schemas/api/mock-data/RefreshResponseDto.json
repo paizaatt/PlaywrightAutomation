@@ -1,0 +1,9 @@
+{
+  "dtoName": "RefreshResponseDto",
+  "updatedAt": "2026-07-07T15:18:27.675Z",
+  "source": "jsf",
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }
+}

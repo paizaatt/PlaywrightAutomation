@@ -4,15 +4,15 @@ import { assertOpenApiRequest, assertOpenApiResponse } from '../../../src/utils/
 
 test.describe('API — Auth Login', () => {
   test('POST /api/auth/login thành công với credentials hợp lệ', async ({ authService }) => {
-    const payload = {
+    const apiLoginPayload = {
       username: env.apiAuth.username,
       bank: env.apiAuth.bank,
       site: env.apiAuth.site,
     };
 
-    assertOpenApiRequest('POST', '/api/auth/login', payload);
+    assertOpenApiRequest('POST', '/api/auth/login', apiLoginPayload);
 
-    const { response, body } = await authService.auth.loginAndParse(payload);
+    const { response, body } = await authService.auth.loginAndParse(apiLoginPayload);
 
     expect(response.status()).toBe(200);
     expect(body.username).toBe(env.apiAuth.username);

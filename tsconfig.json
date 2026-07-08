@@ -18,7 +18,8 @@
       "@fixtures/*": ["src/fixtures/*"],
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
-      "@types/*": ["src/types/*"]
+      "@types/*": ["src/types/*"],
+      "@mock/*": ["src/mock/*"]
     }
   },
   "include": ["config/**/*.ts", "src/**/*.ts", "tests/**/*.ts", "schemas/**/*.json"]

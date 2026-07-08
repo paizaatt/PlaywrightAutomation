@@ -1,0 +1,9 @@
+{
+  "dtoName": "post-api-auth-login-response-200",
+  "updatedAt": "2026-07-07T15:18:27.760Z",
+  "source": "jsf",
+  "data": {
+    "username": "lokiit",
+    "message": "Đăng nhập thành công"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "dtoName": "LoginRequestDto",
+  "updatedAt": "2026-07-07T15:18:27.643Z",
+  "source": "jsf",
+  "data": {
+    "username": "lokiit",
+    "bank": "1234",
+    "site": "sc88",
+    "turnstileToken": "token123"
+  }
+}

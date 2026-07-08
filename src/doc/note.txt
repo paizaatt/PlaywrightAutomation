@@ -33,3 +33,35 @@ Xây dựng các Fixture gọi API ngầm để tạo nhanh dữ liệu (Data In
 
 Tích hợp công cụ Ruff hoặc ESLint/Prettier cùng với Husky (Pre-commit hooks). Khi bất kỳ ai gõ code sai chuẩn hoặc để lại code thừa,
 hệ thống Git sẽ chặn lại không cho commit lên GitHub cho đến khi sửa sạch lỗi code.
+
+Run test with mockdata
+npx playwright test tests/ui/mock/auth-login.spec.ts --config=config/playwright.config.ts --project=UI-Tests-no-cookie
+
+No-log
+MOCK_DEBUG=0 npx playwright test tests/ui/mock/auth-login.spec.ts ...
+
+--- Mock Storage Modes ---
+
+1) RAM (mac dinh) — sinh du lieu tren RAM, khong doc/ghi file:
+npx playwright test tests/ui/mock/auth-login.spec.ts --config=config/playwright.config.ts --project=UI-Tests-no-cookie
+
+2) FILE + ghi de — sinh moi va luu lan cuoi vao schemas/api/mock-data/{DtoName}.json:
+PowerShell:
+  $env:MOCK_STORAGE="file"; $env:MOCK_FILE_POLICY="overwrite"; npx playwright test tests/ui/mock/auth-login.spec.ts --config=config/playwright.config.ts --project=UI-Tests-no-cookie
+
+3) FILE + dung du lieu da luu — doc file, khong goi JSF (neu file chua co thi fallback sinh moi):
+PowerShell:
+  $env:MOCK_STORAGE="file"; $env:MOCK_FILE_POLICY="use-saved"; npx playwright test tests/ui/mock/auth-login.spec.ts --config=config/playwright.config.ts --project=UI-Tests-no-cookie
+
+Vi du file luu: schemas/api/mock-data/AuthResponseDto.json
+Ghi de tuy chon bang MOCK_FILE_POLICY=overwrite. Khong set env = luong RAM hien tai.
+
+--- API Mock Contract (khong UI / khong browser) ---
+
+Sinh mock data cho toan bo components.schemas + request/response trong openapi.json,
+sau do validate nguoc lai bang OpenAPI validator:
+
+PowerShell:
+  $env:MOCK_STORAGE="ram"; npx playwright test tests/api/mock/openapi-mock-contract.spec.ts --config=config/playwright.config.ts --project=API-Mock-Contract
+
+Ket qua mong doi: 30 passed.

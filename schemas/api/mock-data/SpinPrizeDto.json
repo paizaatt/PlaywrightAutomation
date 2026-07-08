@@ -1,0 +1,12 @@
+{
+  "dtoName": "SpinPrizeDto",
+  "updatedAt": "2026-07-07T15:18:27.685Z",
+  "source": "jsf",
+  "data": {
+    "configCode": "prize_50k",
+    "label": "50,000 VND",
+    "rewardType": "point",
+    "pointValue": "50,000",
+    "giftName": null
+  }
+}

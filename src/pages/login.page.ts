@@ -7,15 +7,13 @@ export class LoginPage {
   readonly subtitle: ReturnType<Page['locator']>;
 
   constructor(private readonly page: Page) {
-    this.loginForm = new LoginFormComponent(
-      page.locator('.login-card form[action="/login"]'),
-    );
+    this.loginForm = new LoginFormComponent(page.locator('.login-card form[action="/login"]'));
     this.title = page.locator('.login-card h1');
     this.subtitle = page.locator('.login-card .subtitle');
   }
 
   async goto(): Promise<void> {
-    await this.page.goto('https://www.78winc3.com/');
+    await this.page.goto('https://f8betbb1.vip/');
     await this.loginForm.usernameInput.waitFor({ state: 'visible' });
   }
 }

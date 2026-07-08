@@ -1,0 +1,36 @@
+{
+  "dtoName": "StageDto",
+  "updatedAt": "2026-07-07T15:18:27.716Z",
+  "source": "jsf",
+  "data": {
+    "id": "507f1f77bcf86cd799439011",
+    "stageOrder": 1,
+    "name": "Chặng 1: Khởi Đầu",
+    "description": "Hoàn thành nhiệm vụ cơ bản",
+    "status": "in_progress",
+    "conditions": [
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      },
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      },
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      }
+    ],
+    "allConditionsMet": true
+  }
+}

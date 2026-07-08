@@ -5,13 +5,19 @@
   "scripts": {
     "test": "playwright test --config=config/playwright.config.ts",
     "test:headed": "playwright test --config=config/playwright.config.ts --headed",
-    "test:ui": "playwright test --config=config/playwright.config.ts --ui",
+    "test:ui": "playwright test --config=config/playwright.config.ts --project=UI-Tests-no-cookie",
+    "test:ui:mode": "playwright test --config=config/playwright.config.ts --ui",
+    "test:api": "playwright test --config=config/playwright.config.ts --project=API-Tests --project=API-Tests-co-cookie",
+    "test:api-mock": "playwright test tests/api/mock/openapi-mock-contract.spec.ts --config=config/playwright.config.ts --project=API-Mock-Contract",
+    "test:all": "playwright test --config=config/playwright.config.ts",
+    "typecheck": "tsc --noEmit",
     "report": "playwright show-report",
     "run:auto": "node run-auto.js",
     "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.5.0",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.0",
     "@typescript-eslint/eslint-plugin": "^8.62.0",
@@ -20,6 +26,7 @@
     "ajv-formats": "^3.0.1",
     "eslint": "^10.6.0",
     "husky": "^9.1.7",
+    "json-schema-faker": "^0.6.2",
     "lint-staged": "^17.0.8",
     "prettier": "^3.9.0",
     "typescript": "^5.8.3",

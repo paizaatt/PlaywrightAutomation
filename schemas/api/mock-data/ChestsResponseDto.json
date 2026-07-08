@@ -1,0 +1,136 @@
+{
+  "dtoName": "ChestsResponseDto",
+  "updatedAt": "2026-07-07T15:18:27.633Z",
+  "source": "jsf",
+  "data": {
+    "stageId": "507f1f77bcf86cd799439011",
+    "stageOrder": 1,
+    "name": "Chặng 1: Khởi Đầu",
+    "status": "in_progress",
+    "stageConditions": [
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      },
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      },
+      {
+        "type": "deposit",
+        "label": "Nạp tiền",
+        "required": 1000000,
+        "current": 500000,
+        "met": false
+      }
+    ],
+    "allStageConditionsMet": true,
+    "chests": [
+      {
+        "index": 0,
+        "label": "Rương 1",
+        "isCharChest": false,
+        "isTrap": false,
+        "opened": false,
+        "rewardAmount": 50000,
+        "milestoneMet": true,
+        "conditions": [
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          },
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          },
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          }
+        ],
+        "allConditionsMet": true
+      },
+      {
+        "index": 0,
+        "label": "Rương 1",
+        "isCharChest": false,
+        "isTrap": false,
+        "opened": false,
+        "rewardAmount": 50000,
+        "milestoneMet": true,
+        "conditions": [
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          },
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          },
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          }
+        ],
+        "allConditionsMet": true
+      },
+      {
+        "index": 0,
+        "label": "Rương 1",
+        "isCharChest": false,
+        "isTrap": false,
+        "opened": false,
+        "rewardAmount": 50000,
+        "milestoneMet": true,
+        "conditions": [
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          },
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          },
+          {
+            "type": "deposit",
+            "label": "Nạp tiền",
+            "required": 1000000,
+            "current": 500000,
+            "met": false
+          }
+        ],
+        "allConditionsMet": true
+      }
+    ]
+  }
+}

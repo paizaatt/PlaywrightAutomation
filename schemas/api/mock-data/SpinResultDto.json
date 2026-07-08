@@ -1,0 +1,12 @@
+{
+  "dtoName": "SpinResultDto",
+  "updatedAt": "2026-07-07T15:18:27.696Z",
+  "source": "jsf",
+  "data": {
+    "configCode": "prize_50k",
+    "rewardType": "point",
+    "pointValue": "50,000",
+    "giftName": null,
+    "spunAt": "2024-01-15T10:30:00.000Z"
+  }
+}

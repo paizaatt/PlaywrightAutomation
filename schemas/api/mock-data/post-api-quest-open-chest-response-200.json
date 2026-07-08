@@ -1,0 +1,24 @@
+{
+  "dtoName": "post-api-quest-open-chest-response-200",
+  "updatedAt": "2026-07-07T15:18:27.786Z",
+  "source": "jsf",
+  "data": {
+    "ok": true,
+    "canOpen": true,
+    "chestIndex": 0,
+    "isCharChest": false,
+    "rewardAmount": 50000,
+    "isTrapFailed": false,
+    "collectedChar": null,
+    "stageCompleted": false,
+    "nextChestIndex": 1,
+    "nextStage": {
+      "stageId": "507f1f77bcf86cd799439011",
+      "stageOrder": 2,
+      "name": "Chặng 2",
+      "status": "in_progress",
+      "unlocked": true
+    },
+    "message": "Chúc mừng! Bạn nhận được 50,000 VND"
+  }
+}

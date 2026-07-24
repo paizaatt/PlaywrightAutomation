@@ -1,0 +1,553 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ui/deposit.spec.ts >> test2
+- Location: tests/ui/deposit.spec.ts:43:5
+
+# Error details
+
+```
+TimeoutError: locator.selectOption: Timeout 15000ms exceeded.
+Call log:
+  - waiting for getByRole('combobox')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - banner [ref=e8]:
+    - generic [ref=e10]:
+      - link [ref=e12] [cursor=pointer]:
+        - /url: /
+        - img [ref=e13]
+      - generic [ref=e14]:
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "Khuyến Mãi" [ref=e17] [cursor=pointer]:
+              - /url: /Promotion
+              - img [ref=e18]
+              - generic [ref=e19]: Khuyến Mãi
+          - listitem [ref=e20]:
+            - generic [ref=e21] [cursor=pointer]:
+              - img [ref=e22]
+              - generic [ref=e23]: CSKH 24/7
+          - listitem [ref=e24]:
+            - link "Đại Lý" [ref=e25] [cursor=pointer]:
+              - /url: https://www.f8betdaily.com/
+              - img [ref=e26]
+              - generic [ref=e27]: Đại Lý
+        - generic [ref=e28]: 2026/07/24 (T6) 16:12:48
+      - generic [ref=e30]:
+        - button "Nạp tiền" [ref=e31] [cursor=pointer]: Nạp tiền
+        - button "Rút tiền" [ref=e33] [cursor=pointer]: Rút tiền
+        - button "Giới Thiệu" [ref=e35] [cursor=pointer]: Giới Thiệu
+        - list [ref=e37]:
+          - listitem [ref=e38]: testcong
+          - listitem [ref=e39]:
+            - text: "0"
+            - button "" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: 
+        - button [ref=e42] [cursor=pointer]
+    - navigation [ref=e46]:
+      - list [ref=e47]:
+        - listitem [ref=e48] [cursor=pointer]:
+          - generic [ref=e50]: Trang Chủ
+        - listitem [ref=e51] [cursor=pointer]:
+          - generic [ref=e53]: Casino
+        - listitem [ref=e54] [cursor=pointer]:
+          - generic [ref=e56]: Nổ Hũ
+        - listitem [ref=e57] [cursor=pointer]:
+          - generic [ref=e59]: Bắn Cá
+        - listitem [ref=e60] [cursor=pointer]:
+          - generic [ref=e62]: Thể Thao
+        - listitem [ref=e63] [cursor=pointer]:
+          - generic [ref=e65]: Game Bài 3D
+        - listitem [ref=e66] [cursor=pointer]:
+          - generic [ref=e68]: Đá Gà
+        - listitem [ref=e69] [cursor=pointer]:
+          - generic [ref=e71]: Xổ Số
+        - listitem [ref=e72] [cursor=pointer]:
+          - link "Chế Độ VIP" [ref=e73]:
+            - /url: /Vip
+        - listitem [ref=e74] [cursor=pointer]:
+          - link "Thương Hiệu" [ref=e75]:
+            - /url: javascript:void(0)
+  - generic [ref=e79]:
+    - generic [ref=e80]: "Tin tức mới nhất :"
+    - list [ref=e83]:
+      - listitem [ref=e84]: "📌 Link dễ nhớ: https://f8bet112.com | Hotline: 078.478.9999"
+      - listitem [ref=e85]: 💰“Đại Tiệc Bí Ẩn Ngày 25”cơ hội nhận thưởng những phần quà giá trị cực HOT thay lời cảm ơn Quý hội viên đã luôn đồng hành cùng F8BET.
+      - listitem [ref=e86]: 💎 THÀNH VIÊN MỚI - Nạp đầu tặng 8,888K | Nạp lần 5 tặng 50%!
+      - listitem [ref=e87]: 🏆 ĐÀO VÀNG VUI - NHẬN QUÀ KHỦNG đang chờ bạn chinh phục!
+      - listitem [ref=e88]: 🤝 HỢP TÁC ĐẠI LÝ TOÀN QUỐC - Hoa hồng lên đến 60%
+      - listitem [ref=e89]: 💸 USDT xử lý tự động 24/7 | Nạp đầu thưởng ngay 100%
+      - listitem [ref=e90]: 👉 Đỉnh cao trải nghiệm - F8BET thử ngay vận may sẽ đến!
+    - button "tất cả" [ref=e91] [cursor=pointer]
+  - generic [ref=e97]:
+    - generic [ref=e98]:
+      - generic [ref=e99]:
+        - generic [ref=e100]: 
+        - generic [ref=e101]:
+          - text: Tài Khoản
+          - generic "testcong" [ref=e102]
+        - generic [ref=e103]:
+          - text: "Số dư :"
+          - generic "0" [ref=e104]
+          - button "" [ref=e105] [cursor=pointer]:
+            - generic [ref=e106]: 
+      - list [ref=e107]:
+        - listitem [ref=e108]:
+          - link " Nạp tiền" [ref=e109] [cursor=pointer]:
+            - /url: /Deposit
+            - generic [ref=e110]: 
+            - generic [ref=e111]: Nạp tiền
+        - listitem [ref=e112]:
+          - link " Rút tiền" [ref=e113] [cursor=pointer]:
+            - /url: /WithdrawApplication
+            - generic [ref=e114]: 
+            - generic [ref=e115]: Rút tiền
+      - list [ref=e116]:
+        - listitem [ref=e117]:
+          - link " Cài đặt bảo mật" [ref=e118] [cursor=pointer]:
+            - /url: /MemberCenter/SecurityList
+            - generic [ref=e119]: 
+            - text: Cài đặt bảo mật
+        - listitem [ref=e120]:
+          - link "Giới thiệu bạn bè" [ref=e121] [cursor=pointer]:
+            - /url: /FriendReferral
+            - text: Giới thiệu bạn bè
+        - listitem [ref=e123]:
+          - link "Khu vực VIP" [ref=e124] [cursor=pointer]:
+            - /url: /Vip
+            - text: Khu vực VIP
+        - listitem [ref=e126]:
+          - link " Thông báo mới nhất" [ref=e127] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e128]: 
+            - text: Thông báo mới nhất
+        - listitem [ref=e129]:
+          - link " Thư nội bộ" [ref=e130] [cursor=pointer]:
+            - /url: /SiteMail
+            - generic [ref=e131]: 
+            - text: Thư nội bộ
+        - listitem [ref=e132]:
+          - link " Khu sự kiện" [ref=e133] [cursor=pointer]:
+            - /url: /Account/ActivityList
+            - generic [ref=e134]: 
+            - text: Khu sự kiện
+        - listitem [ref=e135]:
+          - link " Trung tâm giao dịch" [ref=e136] [cursor=pointer]:
+            - /url: /TransactionCenter
+            - generic [ref=e137]: 
+            - text: Trung tâm giao dịch
+        - listitem [ref=e138]:
+          - link " Lịch sử đặt cược" [ref=e139] [cursor=pointer]:
+            - /url: /Account/BetRecord
+            - generic [ref=e140]: 
+            - text: Lịch sử đặt cược
+        - listitem [ref=e141]:
+          - link " Hoàn trả" [ref=e142] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e143]: 
+            - text: Hoàn trả
+        - listitem [ref=e144]:
+          - link " Yêu thích nhất" [ref=e145] [cursor=pointer]:
+            - /url: /MemberCenter/FavoriteGame
+            - generic [ref=e146]: 
+            - text: Yêu thích nhất
+    - article [ref=e150]:
+      - generic [ref=e151]:
+        - list [ref=e154]:
+          - listitem [ref=e155] [cursor=pointer]:
+            - generic [ref=e157]: Chuyển khoản ngân hàng
+          - listitem [ref=e158] [cursor=pointer]:
+            - generic [ref=e160]: Quét mã ngân hàng
+          - listitem [ref=e161] [cursor=pointer]:
+            - generic [ref=e163]: USDT
+          - listitem [ref=e164] [cursor=pointer]:
+            - generic [ref=e166]: Momo Pay
+          - listitem [ref=e167] [cursor=pointer]:
+            - generic [ref=e169]: ZaloPay
+          - listitem [ref=e170] [cursor=pointer]:
+            - generic [ref=e172]: Thẻ Cào
+          - listitem [ref=e173] [cursor=pointer]:
+            - generic [ref=e175]: VTPay
+        - generic [ref=e182]:
+          - list [ref=e184]:
+            - listitem [ref=e185] [cursor=pointer]:
+              - heading "NẠP NHANH 02 ❤️" [level=3] [ref=e186]
+              - paragraph [ref=e187]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e188]: 50 ~ 250,000
+              - generic [ref=e189]: 
+            - listitem [ref=e190] [cursor=pointer]:
+              - heading "NẠP NHANH 43❤️" [level=3] [ref=e191]
+              - paragraph [ref=e192]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e193]: 50 ~ 300,000
+              - generic [ref=e194]: 
+            - listitem [ref=e195] [cursor=pointer]:
+              - heading "NẠP NHANH 92 ❤️" [level=3] [ref=e196]
+              - paragraph [ref=e197]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e198]: 100 ~ 200,000
+              - generic [ref=e199]: 
+            - listitem [ref=e200] [cursor=pointer]:
+              - heading "NẠP NHANH 84 ❤️" [level=3] [ref=e201]
+              - paragraph [ref=e202]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e203]: 50 ~ 300,000
+              - generic [ref=e204]: 
+            - listitem [ref=e205] [cursor=pointer]:
+              - heading "NẠP NHANH 80❤️" [level=3] [ref=e206]
+              - paragraph [ref=e207]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e208]: 50 ~ 300,000
+              - generic [ref=e209]: 
+            - listitem [ref=e210] [cursor=pointer]:
+              - heading "NẠP NHANH 04 ❤️" [level=3] [ref=e211]
+              - paragraph [ref=e212]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e213]: 50 ~ 200,000
+              - generic [ref=e214]: 
+            - listitem [ref=e215] [cursor=pointer]:
+              - heading "NẠP NHANH 26❤️" [level=3] [ref=e216]
+              - paragraph [ref=e217]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e218]: 50 ~ 300,000
+              - generic [ref=e219]: 
+            - listitem [ref=e220] [cursor=pointer]:
+              - heading "NẠP NHANH 86 ❤️" [level=3] [ref=e221]
+              - paragraph [ref=e222]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e223]: 100 ~ 250,000
+              - generic [ref=e224]: 
+            - listitem [ref=e225] [cursor=pointer]:
+              - heading "NẠP NHANH 77❤️" [level=3] [ref=e226]
+              - paragraph [ref=e227]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e228]: 100 ~ 250,000
+              - generic [ref=e229]: 
+            - listitem [ref=e230] [cursor=pointer]:
+              - heading "NẠP NHANH 33❤️" [level=3] [ref=e231]
+              - paragraph [ref=e232]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e233]: 50 ~ 290,000
+              - generic [ref=e234]: 
+            - listitem [ref=e235] [cursor=pointer]:
+              - heading "NẠP NHANH 47❤️" [level=3] [ref=e236]
+              - paragraph [ref=e237]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e238]: 50 ~ 200,000
+              - generic [ref=e239]: 
+            - listitem [ref=e240] [cursor=pointer]:
+              - heading "NẠP NHANH 09 ❤️" [level=3] [ref=e241]
+              - paragraph [ref=e242]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e243]: 50 ~ 290,000
+              - generic [ref=e244]: 
+            - listitem [ref=e245] [cursor=pointer]:
+              - heading "NẠP NHANH 07 ❤️" [level=3] [ref=e246]
+              - paragraph [ref=e247]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e248]: 50 ~ 100,000
+              - generic [ref=e249]: 
+            - listitem [ref=e250] [cursor=pointer]:
+              - heading "NẠP NHANH 97❤️" [level=3] [ref=e251]
+              - paragraph [ref=e252]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e253]: 100 ~ 300,000
+              - generic [ref=e254]: 
+            - listitem [ref=e255] [cursor=pointer]:
+              - heading "NẠP NHANH 81❤️" [level=3] [ref=e256]
+              - paragraph [ref=e257]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e258]: 500 ~ 290,000
+              - generic [ref=e259]: 
+            - listitem [ref=e260] [cursor=pointer]:
+              - heading "NẠP NHANH 106❤️" [level=3] [ref=e261]
+              - paragraph [ref=e262]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e263]: 50 ~ 290,000
+              - generic [ref=e264]: 
+            - listitem [ref=e265] [cursor=pointer]:
+              - heading "NẠP NHANH 87❤️" [level=3] [ref=e266]
+              - paragraph [ref=e267]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e268]: 100 ~ 300,000
+              - generic [ref=e269]: 
+            - listitem [ref=e270] [cursor=pointer]:
+              - heading "NẠP NHANH 03 ❤️" [level=3] [ref=e271]
+              - paragraph [ref=e272]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e273]: 50 ~ 250,000
+              - generic [ref=e274]: 
+            - listitem [ref=e275] [cursor=pointer]:
+              - heading "NẠP NHANH 05❤️" [level=3] [ref=e276]
+              - paragraph [ref=e277]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e278]: 50 ~ 200,000
+              - generic [ref=e279]: 
+            - listitem [ref=e280] [cursor=pointer]:
+              - heading "NẠP NHANH 37❤️" [level=3] [ref=e281]
+              - paragraph [ref=e282]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e283]: 50 ~ 300,000
+              - generic [ref=e284]: 
+            - listitem [ref=e285] [cursor=pointer]:
+              - heading "NẠP NHANH 19 ❤️" [level=3] [ref=e286]
+              - paragraph [ref=e287]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e288]: 200 ~ 200,000
+              - generic [ref=e289]: 
+            - listitem [ref=e290] [cursor=pointer]:
+              - heading "NẠP NHANH 90 ❤️" [level=3] [ref=e291]
+              - paragraph [ref=e292]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e293]: 100 ~ 100,000
+              - generic [ref=e294]: 
+            - listitem [ref=e295] [cursor=pointer]:
+              - heading "NẠP NHANH 89❤️" [level=3] [ref=e296]
+              - paragraph [ref=e297]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e298]: 300 ~ 200,000
+              - generic [ref=e299]: 
+            - listitem [ref=e300] [cursor=pointer]:
+              - heading "NẠP NHANH 51❤️" [level=3] [ref=e301]
+              - paragraph [ref=e302]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e303]: 50 ~ 300,000
+              - generic [ref=e304]: 
+            - listitem [ref=e305] [cursor=pointer]:
+              - heading "NẠP NHANH 78❤️" [level=3] [ref=e306]
+              - paragraph [ref=e307]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e308]: 50 ~ 300,000
+              - generic [ref=e309]: 
+            - listitem [ref=e310] [cursor=pointer]:
+              - heading "NẠP NHANH 91❤️" [level=3] [ref=e311]
+              - paragraph [ref=e312]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e313]: 100 ~ 300,000
+              - generic [ref=e314]: 
+            - listitem [ref=e315] [cursor=pointer]:
+              - heading "NẠP NHANH 94 ❤️" [level=3] [ref=e316]
+              - paragraph [ref=e317]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e318]: 50 ~ 300,000
+              - generic [ref=e319]: 
+            - listitem [ref=e320] [cursor=pointer]:
+              - heading "NẠP NHANH 21 ❤️" [level=3] [ref=e321]
+              - paragraph [ref=e322]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e323]: 100 ~ 299,000
+              - generic [ref=e324]: 
+            - listitem [ref=e325] [cursor=pointer]:
+              - heading "NẠP NHANH 62 ❤️" [level=3] [ref=e326]
+              - paragraph [ref=e327]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e328]: 100 ~ 300,000
+              - generic [ref=e329]: 
+            - listitem [ref=e330] [cursor=pointer]:
+              - heading "NẠP NHANH 54❤️" [level=3] [ref=e331]
+              - paragraph [ref=e332]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e333]: 100 ~ 200,000
+              - generic [ref=e334]: 
+            - listitem [ref=e335] [cursor=pointer]:
+              - heading "NẠP NHANH 104❤️" [level=3] [ref=e336]
+              - paragraph [ref=e337]:
+                - text: Giới hạn nạp tối thiểu
+                - generic [ref=e338]: 100 ~ 250,000
+              - generic [ref=e339]: 
+          - generic [ref=e341]:
+            - group [ref=e342]:
+              - paragraph [ref=e343]: "⭐️ Link dễ nhớ: f8bet112.com"
+            - group [ref=e344]:
+              - paragraph [ref=e345]: Số tiền được đề xuất để thanh toán：
+              - list [ref=e346]:
+                - listitem [ref=e347] [cursor=pointer]: "100"
+                - listitem [ref=e348] [cursor=pointer]: "500"
+                - listitem [ref=e349] [cursor=pointer]: 1,000
+                - listitem [ref=e350] [cursor=pointer]: 5,000
+                - listitem [ref=e351] [cursor=pointer]: 20,000
+                - listitem [ref=e352] [cursor=pointer]: 50,000
+                - listitem [ref=e353] [cursor=pointer]: 150,000
+                - listitem [ref=e354] [cursor=pointer]: 200,000
+            - group [ref=e355]:
+              - paragraph [ref=e356]: Nạp tiền：
+              - generic [ref=e357]:
+                - spinbutton [ref=e359]: "0"
+                - generic [ref=e361]: = 0 VND
+              - text: 
+            - group [ref=e362]:
+              - paragraph [ref=e363]:
+                - text: phí thủ tục： 0
+                - generic [ref=e365]: = 0 VND
+              - paragraph [ref=e366]:
+                - text: Thực tế nhận được： 0
+                - generic [ref=e368]: = 0 VND
+            - button "Thanh toán ngay bây giờ" [disabled] [ref=e370]
+  - contentinfo [ref=e372]:
+    - generic [ref=e374]:
+      - generic [ref=e375]:
+        - generic [ref=e376]:
+          - img [ref=e377]
+          - paragraph [ref=e378]:
+            - text: F8BET là một nhà cái có giấy phép cá cược trực tuyến hợp pháp do Isle of Man và Khu kinh tế Cagayan and Freeport cấp. Với bề dày kinh nghiệm và danh tiếng phục vụ hơn 10 triệu người chơi, F8BET đã và đang khẳng định vị thế của mình [...]
+            - generic [ref=e379] [cursor=pointer]: Xem thêm
+        - link "đại Sứ Thương Hiệu David De Gea Năm 2024 - 2025 Eimi Fukada Năm 2024 - 2025" [ref=e381] [cursor=pointer]:
+          - /url: https://f8bet38.com
+          - heading "đại Sứ Thương Hiệu" [level=2] [ref=e382]
+          - generic [ref=e383]:
+            - img [ref=e384]
+            - generic [ref=e385]:
+              - img [ref=e386]
+              - paragraph [ref=e387]:
+                - text: David De Gea
+                - text: Năm 2024 - 2025
+          - generic [ref=e388]:
+            - img [ref=e389]
+            - generic [ref=e390]:
+              - img [ref=e391]
+              - paragraph [ref=e392]:
+                - text: Eimi Fukada
+                - text: Năm 2024 - 2025
+      - list [ref=e393]:
+        - listitem [ref=e394]
+        - listitem [ref=e395]
+        - listitem [ref=e396]
+        - listitem [ref=e397]
+        - listitem [ref=e398]
+        - listitem [ref=e399]
+        - listitem [ref=e400]
+        - listitem [ref=e401]
+        - listitem [ref=e402]
+        - listitem [ref=e403]
+        - listitem [ref=e404]:
+          - link [ref=e405] [cursor=pointer]:
+            - /url: https://f8betc3.com/KENHKM01
+        - listitem [ref=e406]:
+          - link [ref=e407] [cursor=pointer]:
+            - /url: https://www.facebook.com/F8BET.official1
+        - listitem [ref=e408]:
+          - link [ref=e409] [cursor=pointer]:
+            - /url: https://f8betc3.com/YOUTUBE
+      - list [ref=e410]:
+        - listitem [ref=e411]:
+          - link "Điều khoản và điều kiện" [ref=e412] [cursor=pointer]:
+            - /url: /rule
+        - listitem [ref=e413]:
+          - link "Giới thiệu về F8BET" [ref=e414] [cursor=pointer]:
+            - /url: /AboutUS
+        - listitem [ref=e415]:
+          - link "Chơi có trách nhiệm" [ref=e416] [cursor=pointer]:
+            - /url: /ResponsibleGambling
+        - listitem [ref=e417]:
+          - link "Miễn trách nhiệm" [ref=e418] [cursor=pointer]:
+            - /url: /Disclaimer
+        - listitem [ref=e419]:
+          - link "Quyền riêng tư tại F8BET" [ref=e420] [cursor=pointer]:
+            - /url: /Privacy
+        - listitem [ref=e421]:
+          - link "Những câu hỏi thường gặp" [ref=e422] [cursor=pointer]:
+            - /url: /FAQ
+    - paragraph [ref=e423]: Copyright © F8BET.COM Reserved
+  - generic [ref=e425]:
+    - generic [ref=e426]: Duyệt qua lịch sử
+    - list [ref=e428]:
+      - listitem [ref=e433]: No data
+  - generic:
+    - complementary [ref=e434]:
+      - generic [ref=e436]: 
+      - img [ref=e438]
+    - complementary [ref=e439]:
+      - generic [ref=e441]: 
+      - link [ref=e442] [cursor=pointer]:
+        - /url: /Promotion
+        - img [ref=e443]
+  - complementary [ref=e444]:
+    - generic [ref=e447]:
+      - img [ref=e449] [cursor=pointer]
+      - img [ref=e451] [cursor=pointer]
+      - img [ref=e453] [cursor=pointer]
+      - img [ref=e455] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | 
+  3  | test('test1', async ({ page }) => {
+  4  |   await page.goto('https://f8betbb1.vip/');
+  5  |   await page.getByText('Không hiển thị nữa').click();
+  6  |   await page.getByRole('button').click();
+  7  |   await page.getByText('Đóng').click();
+  8  |   await page.getByRole('button', { name: 'Đăng nhập' }).click();
+  9  |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).click();
+  10 |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).click();
+  11 |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).fill('testcong');
+  12 |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).press('Tab');
+  13 |   await page.getByRole('textbox', { name: 'Mật khẩu' }).fill('a123123');
+  14 |   await page.getByRole('textbox', { name: 'Mật khẩu' }).click();
+  15 |   await page.getByRole('checkbox').check();
+  16 |   await page.getByRole('button', { name: 'Đăng nhập' }).click();
+  17 |   await page.getByRole('button', { name: 'Nạp tiền' }).click();
+  18 |   await page.getByRole('listitem').filter({ hasText: 'Chuyển khoản ngân hàng' }).click();
+  19 |   await page.getByText('NẠP NHANH 07 ❤️ Giới hạn nạp').click();
+  20 |   await page.locator('.text-center').first().click();
+  21 |   const page1Promise = page.waitForEvent('popup');
+  22 |   await page.getByRole('link', { name: 'Thanh toán ngay bây giờ' }).click();
+  23 |   const page1 = await page1Promise;
+  24 |   await page1.waitForLoadState('domcontentloaded');
+  25 | 
+  26 |   const qrCodeContainer = page1.locator('.qr-code-container');
+  27 |   await expect(qrCodeContainer).toBeVisible();
+  28 |   await expect(qrCodeContainer).not.toBeEmpty();
+  29 |   await expect(qrCodeContainer.locator('img.qrcode')).toBeVisible();
+  30 |   await expect(qrCodeContainer.getByText('Scan here')).toBeVisible();
+  31 | 
+  32 |   const bankInfo = page1.locator('.bank-info');
+  33 |   await expect(bankInfo).toBeVisible();
+  34 |   await expect(bankInfo).not.toBeEmpty();
+  35 |   await expect(bankInfo).not.toHaveText(/^\s*$/);
+  36 | 
+  37 |   const boxNotice = page1.locator('.box-notice');
+  38 |   await expect(boxNotice).toBeVisible();
+  39 |   await expect(boxNotice.locator('ol li')).not.toHaveCount(0);
+  40 | });
+  41 | 
+  42 | 
+  43 | test('test2', async ({ page }) => {
+  44 |   await page.goto('https://f8betbb1.vip/');
+  45 |   await page.getByRole('checkbox', { name: 'Không hiển thị nữa' }).check();
+  46 |   await page.getByRole('button').click();
+  47 |   await page.getByText('Đóng').click();
+  48 |   await page.getByRole('button', { name: 'Đăng nhập' }).click();
+  49 |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).click();
+  50 |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).fill('testcong');
+  51 |   await page.getByRole('textbox', { name: 'Tên đăng nhập' }).click();
+  52 |   await page.getByRole('textbox', { name: 'Mật khẩu' }).click();
+  53 |   await page.getByRole('textbox', { name: 'Mật khẩu' }).fill('a123123');
+  54 |   await page.getByRole('button', { name: 'Đăng nhập' }).click();
+  55 |   await page.getByRole('button', { name: 'Nạp tiền' }).click();
+  56 |   await page.getByRole('listitem').filter({ hasText: 'Chuyển khoản ngân hàng' }).click();
+  57 |   await page.getByText('Giới hạn nạp tối thiểu').nth(2).click();
+> 58 |   await page.getByRole('combobox').selectOption('12');
+     |                                    ^ TimeoutError: locator.selectOption: Timeout 15000ms exceeded.
+  59 |   await page.getByPlaceholder('Vui lòng nhập số tiền').dblclick();
+  60 |   await page.getByPlaceholder('Vui lòng nhập số tiền').fill('100');
+  61 |   const page1Promise = page.waitForEvent('popup');
+  62 |   await page.getByRole('link', { name: 'Thanh toán ngay bây giờ' }).click();
+  63 |   const page1 = await page1Promise;
+  64 |   await page1.getByText('100,000VND').click();
+  65 | });
+```

@@ -1,0 +1,1215 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ui/login.spec.ts >> Authentication — Login >> đăng nhập thành công với username và password hợp lệ (admin/admin)
+- Location: tests/ui/login.spec.ts:7:7
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('.login-card form[action="/login"]').locator('#username') to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - dialog [active] [ref=e2]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e9]:
+          - checkbox "Không hiển thị nữa" [ref=e10]
+          - text: Không hiển thị nữa
+        - text: F8BET - THỬ NGAY VẬN MAY SẼ ĐẾN
+        - button "" [ref=e11] [cursor=pointer]:
+          - generic [ref=e12]: 
+      - generic [ref=e13]:
+        - list [ref=e15]:
+          - listitem "💎 THƯỞNG 5% THỨ 6 NGÀY VÀNG 💎" [ref=e16] [cursor=pointer]:
+            - generic [ref=e17]: 
+            - generic [ref=e18]: 💎 THƯỞNG 5% THỨ 6 NGÀY VÀNG 💎
+            - generic [ref=e19]: 
+          - listitem "🔥ĐẶC QUYỀN TÂN THỦ – NẠP TIỀN THƯỞNG ĐẾN 8,888K🔥" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: 
+            - generic [ref=e22]: 🔥ĐẶC QUYỀN TÂN THỦ – NẠP TIỀN THƯỞNG ĐẾN 8,888K🔥
+            - generic [ref=e23]: 
+          - listitem "🔥 CÀNG NẠP CÀNG LỜI – LẦN 5 NHẬN 50% 🔥" [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]: 
+            - generic [ref=e26]: 🔥 CÀNG NẠP CÀNG LỜI – LẦN 5 NHẬN 50% 🔥
+            - generic [ref=e27]: 
+          - listitem "💲 NẠP – RÚT USDT TỨC THÌ CHỈ CÓ TẠI F8BET 💲" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: 
+            - generic [ref=e30]: 💲 NẠP – RÚT USDT TỨC THÌ CHỈ CÓ TẠI F8BET 💲
+            - generic [ref=e31]: 
+          - listitem "🚨 CẢNH BÁO LỪA ĐẢO 🚨" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: 
+            - generic [ref=e34]: 🚨 CẢNH BÁO LỪA ĐẢO 🚨
+            - generic [ref=e35]: 
+        - generic [ref=e36]:
+          - paragraph [ref=e37]:
+            - img [ref=e38]
+          - generic [ref=e39]:
+            - paragraph [ref=e40]:
+              - text: ✦
+              - strong [ref=e41]: "Mã Khuyến Mãi:"
+              - strong [ref=e42]
+              - text: KMNV
+              - text: ✦ Thứ 6 hàng tuần – Nạp tiền và đăng ký khuyến mãi nhận thưởng tới 5% để trải nghiệm cùng
+              - generic [ref=e43]: F8BET
+              - text: "!"
+              - text: ✦ Áp dụng cho
+              - strong [ref=e44]: mọi thành viên
+              - text: ","
+              - strong [ref=e45]: 1 lần/tuần
+              - text: .
+              - generic [ref=e46]:
+                - text: ✦
+                - generic [ref=e49]:
+                  - text: Chỉ cần
+                  - strong [ref=e50]: 3 vòng cược
+                  - text: để rút tiền. Không áp dụng cùng khuyến mãi nạp khác và
+                  - strong [ref=e51]: không áp dụng cho XỔ SỐ
+                  - text: .
+              - generic [ref=e52]: ✦
+              - generic [ref=e53]: F8BET
+              - text: tri ân tin yêu của Quý hội viên – cùng nhau viết tiếp hành trình thành công và gắn kết.
+            - link "ĐĂNG KÝ NGAY" [ref=e55] [cursor=pointer]:
+              - /url: https://iframe-ttkm-f8bet.pages.dev/?promo_id=KMNV
+            - paragraph [ref=e56]: F8BET - THỬ NGAY VẬN MAY SẼ ĐẾN
+  - dialog [ref=e58]:
+    - complementary [ref=e62]:
+      - heading [level=2] [ref=e64]: THỬ NGAY VẬN MAY SẼ ĐẾN
+      - list [ref=e65]:
+        - listitem [ref=e66]: "📌 Link dễ nhớ: https://f8bet9.co | Hotline: 078.478.9999"
+        - listitem [ref=e67]: 🔥 CÀNG NẠP CÀNG LỜI – LẦN 5 NHẬN 50% 🔥
+        - listitem [ref=e68]: 📭 MỞ HỘP THƯ NGAY - CODE VỀ LIỀN TAY 💌
+        - listitem [ref=e69]: 💎THƯỞNG MỖI NGÀY NỔ HŨ- BẮN CÁ- GAME BÀI💎
+        - listitem [ref=e70]: 💎 Nạp Rút 24/7 | Nhanh Chóng – Tiện Lợi – Mọi Lúc 💎
+        - listitem [ref=e71]: 👉 Đỉnh cao trải nghiệm - F8BET thử ngay vận may sẽ đến!
+      - generic [ref=e73] [cursor=pointer]: Đóng
+  - generic [ref=e79]:
+    - banner [ref=e81]:
+      - generic [ref=e83]:
+        - link [ref=e85] [cursor=pointer]:
+          - /url: /
+          - img [ref=e86]
+        - generic [ref=e87]:
+          - list [ref=e88]:
+            - listitem [ref=e89]:
+              - link [ref=e90] [cursor=pointer]:
+                - /url: /Promotion
+                - img [ref=e91]
+                - generic [ref=e92]: Khuyến Mãi
+            - listitem [ref=e93]:
+              - generic [ref=e94] [cursor=pointer]:
+                - img [ref=e95]
+                - generic [ref=e96]: CSKH 24/7
+            - listitem [ref=e97]:
+              - link [ref=e98] [cursor=pointer]:
+                - /url: https://www.f8betdaily.com/
+                - img [ref=e99]
+                - generic [ref=e100]: Đại Lý
+          - generic [ref=e101]: 2026/08/12 (T4) 15:58:18
+          - generic [ref=e102]:
+            - button [ref=e103] [cursor=pointer]: Đăng nhập
+            - button [ref=e104] [cursor=pointer]: Đăng ký
+            - button [ref=e105] [cursor=pointer]: Chơi Thử
+      - navigation [ref=e110]:
+        - list [ref=e111]:
+          - listitem [ref=e112] [cursor=pointer]:
+            - generic [ref=e114]: Trang Chủ
+          - listitem [ref=e115] [cursor=pointer]:
+            - generic [ref=e117]: Casino
+          - listitem [ref=e118] [cursor=pointer]:
+            - generic [ref=e120]: Nổ Hũ
+          - listitem [ref=e121] [cursor=pointer]:
+            - generic [ref=e123]: Bắn Cá
+          - listitem [ref=e124] [cursor=pointer]:
+            - generic [ref=e126]: Thể Thao
+          - listitem [ref=e127] [cursor=pointer]:
+            - generic [ref=e129]: Game Bài 3D
+          - listitem [ref=e130] [cursor=pointer]:
+            - generic [ref=e132]: Đá Gà
+          - listitem [ref=e133] [cursor=pointer]:
+            - generic [ref=e135]: Xổ Số
+          - listitem [ref=e136] [cursor=pointer]:
+            - link [ref=e137]:
+              - /url: /Vip
+              - text: Chế Độ VIP
+          - listitem [ref=e138] [cursor=pointer]:
+            - link [ref=e139]:
+              - /url: javascript:void(0)
+              - text: Thương Hiệu
+    - generic [ref=e143]:
+      - link [ref=e145] [cursor=pointer]:
+        - /url: /Promotion
+        - img [ref=e146]
+      - list [ref=e147]:
+        - listitem [ref=e148] [cursor=pointer]
+        - listitem [ref=e149] [cursor=pointer]
+        - listitem [ref=e150] [cursor=pointer]
+        - listitem [ref=e151] [cursor=pointer]
+        - listitem [ref=e152] [cursor=pointer]
+        - listitem [ref=e153] [cursor=pointer]
+        - listitem [ref=e154] [cursor=pointer]
+        - listitem [ref=e155] [cursor=pointer]
+    - generic [ref=e158]:
+      - generic [ref=e159]: "Tin tức mới nhất :"
+      - list [ref=e162]:
+        - listitem [ref=e163]: "📌 Link dễ nhớ: https://f8bet9.co | Hotline: 078.478.9999"
+        - listitem [ref=e164]: 🔥 CÀNG NẠP CÀNG LỜI – LẦN 5 NHẬN 50% 🔥
+        - listitem [ref=e165]: 📭 MỞ HỘP THƯ NGAY - CODE VỀ LIỀN TAY 💌
+        - listitem [ref=e166]: 💎THƯỞNG MỖI NGÀY NỔ HŨ- BẮN CÁ- GAME BÀI💎
+        - listitem [ref=e167]: 💎 Nạp Rút 24/7 | Nhanh Chóng – Tiện Lợi – Mọi Lúc 💎
+        - listitem [ref=e168]: 👉 Đỉnh cao trải nghiệm - F8BET thử ngay vận may sẽ đến!
+      - button [ref=e169] [cursor=pointer]: tất cả
+    - generic [ref=e174]:
+      - generic [ref=e175]:
+        - generic [ref=e177]:
+          - heading [level=2] [ref=e178]: đại sứ THƯƠNG HIỆU
+          - generic [ref=e179]: Đại sứ thương hiệu độc quyền F8BET
+        - generic [ref=e181]:
+          - paragraph [ref=e182]: đại sứ thương hiệu độc quyền
+          - img [ref=e183]
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - text: đại sứ thương hiệu
+              - heading [level=3] [ref=e186]: DAVID DE GEA
+            - generic [ref=e188]:
+              - text: đại sứ thương hiệu
+              - heading [level=3] [ref=e189]: eimi fukada
+      - generic [ref=e191]:
+        - generic [ref=e193]:
+          - heading [level=2] [ref=e194]: Sảnh trò chơi
+          - generic [ref=e195]: Tổng hợp game chất lượng giải trí đỉnh cao
+        - generic [ref=e196]:
+          - list [ref=e197]:
+            - listitem [ref=e198] [cursor=pointer]: Casino
+            - listitem [ref=e199] [cursor=pointer]: Nổ Hũ
+            - listitem [ref=e200] [cursor=pointer]: Bắn Cá
+            - listitem [ref=e201] [cursor=pointer]: Thể Thao
+            - listitem [ref=e202] [cursor=pointer]: Game Bài 3D
+            - listitem [ref=e203] [cursor=pointer]: Đá Gà
+            - listitem [ref=e204] [cursor=pointer]: Xổ Số
+          - generic [ref=e206]:
+            - generic [ref=e207]:
+              - img [ref=e208]
+              - generic [ref=e209]: 0.8%
+              - list [ref=e210]:
+                - listitem [ref=e211] [cursor=pointer]:
+                  - img [ref=e212]
+                - listitem [ref=e213] [cursor=pointer]:
+                  - img [ref=e214]
+                - listitem [ref=e215] [cursor=pointer]:
+                  - img [ref=e216]
+                - listitem [ref=e217] [cursor=pointer]:
+                  - img [ref=e218]
+                - listitem [ref=e219] [cursor=pointer]:
+                  - img [ref=e220]
+                - listitem [ref=e221] [cursor=pointer]:
+                  - img [ref=e222]
+            - img [ref=e223]
+      - generic [ref=e224]:
+        - heading [level=2] [ref=e227]: Hũ sắp nổ
+        - list [ref=e232]:
+          - listitem [ref=e233]:
+            - figure [ref=e234]:
+              - img [ref=e236]
+              - generic [ref=e237]:
+                - paragraph [ref=e238]: Đường Mạt Chược 2
+                - generic [ref=e239]: 2.000.000.000
+          - listitem [ref=e240]:
+            - figure [ref=e241]:
+              - img [ref=e243]
+              - generic [ref=e244]:
+                - paragraph [ref=e245]: Đường Mạt Chược
+                - generic [ref=e246]: 2.000.000.000
+          - listitem [ref=e247]:
+            - figure [ref=e248]:
+              - img [ref=e250]
+              - generic [ref=e251]:
+                - paragraph [ref=e252]: Kho Báu Aztec
+                - generic [ref=e253]: 2.000.000.000
+          - listitem [ref=e254]:
+            - figure [ref=e255]:
+              - img [ref=e257]
+              - generic [ref=e258]:
+                - paragraph [ref=e259]: Siêu Cấp Ace
+                - generic [ref=e260]: 2.000.000.000
+          - listitem [ref=e261]:
+            - figure [ref=e262]:
+              - img [ref=e264]
+              - generic [ref=e265]:
+                - paragraph [ref=e266]: Đường Mạt Chược 2
+                - generic [ref=e267]: 2.000.000.000
+          - listitem [ref=e268]:
+            - figure [ref=e269]:
+              - img [ref=e271]
+              - generic [ref=e272]:
+                - paragraph [ref=e273]: Đường Mạt Chược
+                - generic [ref=e274]: 2.000.000.000
+          - listitem [ref=e275]:
+            - figure [ref=e276]:
+              - img [ref=e278]
+              - generic [ref=e279]:
+                - paragraph [ref=e280]: Kho Báu Aztec
+                - generic [ref=e281]: 2.000.000.000
+          - listitem [ref=e282]:
+            - figure [ref=e283]:
+              - img [ref=e285]
+              - generic [ref=e286]:
+                - paragraph [ref=e287]: Siêu Cấp Ace
+                - generic [ref=e288]: 2.000.000.000
+          - listitem [ref=e289]:
+            - figure [ref=e290]:
+              - img [ref=e292]
+              - generic [ref=e293]:
+                - paragraph [ref=e294]: Đường Mạt Chược 2
+                - generic [ref=e295]: 2.000.000.000
+        - generic [ref=e296]:
+          - list [ref=e297]:
+            - listitem [ref=e298]
+            - listitem [ref=e299]
+            - listitem [ref=e300]
+            - listitem [ref=e301]
+            - listitem [ref=e302]
+            - listitem [ref=e303]
+            - listitem [ref=e304]
+            - listitem [ref=e305]
+            - listitem [ref=e306]
+          - generic [ref=e307]:
+            - list [ref=e308]:
+              - generic [ref=e310]:
+                - listitem [ref=e313]:
+                  - figure [ref=e314]:
+                    - img [ref=e315]
+                - listitem [ref=e318]:
+                  - figure [ref=e319]:
+                    - img [ref=e320]
+                - listitem [ref=e323]:
+                  - figure [ref=e324]:
+                    - img [ref=e325]
+                - listitem [ref=e328]:
+                  - figure [ref=e329]:
+                    - img [ref=e330]
+                - listitem [ref=e333]:
+                  - figure [ref=e334]:
+                    - img [ref=e335]
+                - listitem [ref=e338]:
+                  - figure [ref=e339]:
+                    - img [ref=e340]
+                - listitem [ref=e343]:
+                  - figure [ref=e344]:
+                    - img [ref=e345]
+                - listitem [ref=e348]:
+                  - figure [ref=e349]:
+                    - img [ref=e350]
+                - listitem [ref=e353]:
+                  - figure [ref=e354]:
+                    - img [ref=e355]
+                - listitem [ref=e358]:
+                  - figure [ref=e359]:
+                    - img [ref=e360]
+                - listitem [ref=e363]:
+                  - figure [ref=e364]:
+                    - img [ref=e365]
+            - button [ref=e366] [cursor=pointer]
+            - button [ref=e367] [cursor=pointer]
+        - list [ref=e372]:
+          - listitem [ref=e373]:
+            - figure [ref=e374]:
+              - img [ref=e375]
+              - generic [ref=e376]:
+                - paragraph [ref=e377]:
+                  - generic [ref=e378]: ng*****51
+                - paragraph [ref=e379]: Chợ Đêm
+                - generic [ref=e380]: 62,510
+          - listitem [ref=e381]:
+            - figure [ref=e382]:
+              - img [ref=e383]
+              - generic [ref=e384]:
+                - paragraph [ref=e385]:
+                  - generic [ref=e386]: be*****22
+                - paragraph [ref=e387]: Kho Báu Aztec
+                - generic [ref=e388]: 859,741
+          - listitem [ref=e389]:
+            - figure [ref=e390]:
+              - img [ref=e391]
+              - generic [ref=e392]:
+                - paragraph [ref=e393]:
+                  - generic [ref=e394]: hu*****56
+                - paragraph [ref=e395]: Siêu Cấp Ace
+                - generic [ref=e396]: 845,141
+          - listitem [ref=e397]:
+            - figure [ref=e398]:
+              - img [ref=e399]
+              - generic [ref=e400]:
+                - paragraph [ref=e401]:
+                  - generic [ref=e402]: sa*****84
+                - paragraph [ref=e403]: Đường Mạt Chược
+                - generic [ref=e404]: 784,514
+          - listitem [ref=e405]:
+            - figure [ref=e406]:
+              - img [ref=e407]
+              - generic [ref=e408]:
+                - paragraph [ref=e409]:
+                  - generic [ref=e410]: ng*****74
+                - paragraph [ref=e411]: Đường Mạt Chược
+                - generic [ref=e412]: 684,145
+          - listitem [ref=e413]:
+            - figure [ref=e414]:
+              - img [ref=e415]
+              - generic [ref=e416]:
+                - paragraph [ref=e417]:
+                  - generic [ref=e418]: sa*****56
+                - paragraph [ref=e419]: Siêu Cấp Ace
+                - generic [ref=e420]: 548,424
+          - listitem [ref=e421]:
+            - figure [ref=e422]:
+              - img [ref=e423]
+              - generic [ref=e424]:
+                - paragraph [ref=e425]:
+                  - generic [ref=e426]: nh*****89
+                - paragraph [ref=e427]: Chợ Đêm
+                - generic [ref=e428]: 524,151
+          - listitem [ref=e429]:
+            - figure [ref=e430]:
+              - img [ref=e431]
+              - generic [ref=e432]:
+                - paragraph [ref=e433]:
+                  - generic [ref=e434]: ta*****51
+                - paragraph [ref=e435]: Đế quốc hoàng kim
+                - generic [ref=e436]: 451,425
+          - listitem [ref=e437]:
+            - figure [ref=e438]:
+              - img [ref=e439]
+              - generic [ref=e440]:
+                - paragraph [ref=e441]:
+                  - generic [ref=e442]: lu*****26
+                - paragraph [ref=e443]: Kho Báu Aztec
+                - generic [ref=e444]: 450,051
+          - listitem [ref=e445]:
+            - figure [ref=e446]:
+              - img [ref=e447]
+              - generic [ref=e448]:
+                - paragraph [ref=e449]:
+                  - generic [ref=e450]: so*****97
+                - paragraph [ref=e451]: Chợ Đêm
+                - generic [ref=e452]: 400,654
+          - listitem [ref=e453]:
+            - figure [ref=e454]:
+              - img [ref=e455]
+              - generic [ref=e456]:
+                - paragraph [ref=e457]:
+                  - generic [ref=e458]: no*****14
+                - paragraph [ref=e459]: Đường Mạt Chược
+                - generic [ref=e460]: 399,245
+          - listitem [ref=e461]:
+            - figure [ref=e462]:
+              - img [ref=e463]
+              - generic [ref=e464]:
+                - paragraph [ref=e465]:
+                  - generic [ref=e466]: ch*****85
+                - paragraph [ref=e467]: Siêu Cấp Ace
+                - generic [ref=e468]: 384,715
+          - listitem [ref=e469]:
+            - figure [ref=e470]:
+              - img [ref=e471]
+              - generic [ref=e472]:
+                - paragraph [ref=e473]:
+                  - generic [ref=e474]: co*****35
+                - paragraph [ref=e475]: Đế quốc hoàng kim
+                - generic [ref=e476]: 350,614
+          - listitem [ref=e477]:
+            - figure [ref=e478]:
+              - img [ref=e479]
+              - generic [ref=e480]:
+                - paragraph [ref=e481]:
+                  - generic [ref=e482]: si*****54
+                - paragraph [ref=e483]: Đường Mạt Chược
+                - generic [ref=e484]: 250,154
+          - listitem [ref=e485]:
+            - figure [ref=e486]:
+              - img [ref=e487]
+              - generic [ref=e488]:
+                - paragraph [ref=e489]:
+                  - generic [ref=e490]: ti*****47
+                - paragraph [ref=e491]: Kho Báu Aztec
+                - generic [ref=e492]: 226,215
+          - listitem [ref=e493]:
+            - figure [ref=e494]:
+              - img [ref=e495]
+              - generic [ref=e496]:
+                - paragraph [ref=e497]:
+                  - generic [ref=e498]: ch*****62
+                - paragraph [ref=e499]: Kho Báu Aztec
+                - generic [ref=e500]: 221,541
+          - listitem [ref=e501]:
+            - figure [ref=e502]:
+              - img [ref=e503]
+              - generic [ref=e504]:
+                - paragraph [ref=e505]:
+                  - generic [ref=e506]: th*****75
+                - paragraph [ref=e507]: Siêu Cấp Ace
+                - generic [ref=e508]: 202,141
+          - listitem [ref=e509]:
+            - figure [ref=e510]:
+              - img [ref=e511]
+              - generic [ref=e512]:
+                - paragraph [ref=e513]:
+                  - generic [ref=e514]: co*****84
+                - paragraph [ref=e515]: Đế quốc hoàng kim
+                - generic [ref=e516]: 199,245
+          - listitem [ref=e517]:
+            - figure [ref=e518]:
+              - img [ref=e519]
+              - generic [ref=e520]:
+                - paragraph [ref=e521]:
+                  - generic [ref=e522]: ha*****22
+                - paragraph [ref=e523]: Mèo Chiêu Tài Mạnh Mẽ
+                - generic [ref=e524]: 192,214
+          - listitem [ref=e525]:
+            - figure [ref=e526]:
+              - img [ref=e527]
+              - generic [ref=e528]:
+                - paragraph [ref=e529]:
+                  - generic [ref=e530]: hi*****84
+                - paragraph [ref=e531]: Kho Báu Aztec
+                - generic [ref=e532]: 184,751
+          - listitem [ref=e533]:
+            - figure [ref=e534]:
+              - img [ref=e535]
+              - generic [ref=e536]:
+                - paragraph [ref=e537]:
+                  - generic [ref=e538]: mo*****56
+                - paragraph [ref=e539]: Đường Mạt Chược
+                - generic [ref=e540]: 180,354
+          - listitem [ref=e541]:
+            - figure [ref=e542]:
+              - img [ref=e543]
+              - generic [ref=e544]:
+                - paragraph [ref=e545]:
+                  - generic [ref=e546]: mo*****14
+                - paragraph [ref=e547]: Siêu Cấp Ace
+                - generic [ref=e548]: 175,141
+          - listitem [ref=e549]:
+            - figure [ref=e550]:
+              - img [ref=e551]
+              - generic [ref=e552]:
+                - paragraph [ref=e553]:
+                  - generic [ref=e554]: em*****15
+                - paragraph [ref=e555]: Siêu Cấp Ace
+                - generic [ref=e556]: 150,154
+          - listitem [ref=e557]:
+            - figure [ref=e558]:
+              - img [ref=e559]
+              - generic [ref=e560]:
+                - paragraph [ref=e561]:
+                  - generic [ref=e562]: em*****88
+                - paragraph [ref=e563]: PHI CÔNG
+                - generic [ref=e564]: 150,000
+          - listitem [ref=e565]:
+            - figure [ref=e566]:
+              - img [ref=e567]
+              - generic [ref=e568]:
+                - paragraph [ref=e569]:
+                  - generic [ref=e570]: do*****51
+                - paragraph [ref=e571]: Đế quốc hoàng kim
+                - generic [ref=e572]: 145,142
+          - listitem [ref=e573]:
+            - figure [ref=e574]:
+              - img [ref=e575]
+              - generic [ref=e576]:
+                - paragraph [ref=e577]:
+                  - generic [ref=e578]: tr*****84
+                - paragraph [ref=e579]: Đường Mạt Chược
+                - generic [ref=e580]: 100,541
+          - listitem [ref=e581]:
+            - figure [ref=e582]:
+              - img [ref=e583]
+              - generic [ref=e584]:
+                - paragraph [ref=e585]:
+                  - generic [ref=e586]: ca*****79
+                - paragraph [ref=e587]: Đường Mạt Chược
+                - generic [ref=e588]: 98,484
+          - listitem [ref=e589]:
+            - figure [ref=e590]:
+              - img [ref=e591]
+              - generic [ref=e592]:
+                - paragraph [ref=e593]:
+                  - generic [ref=e594]: ho*****62
+                - paragraph [ref=e595]: Kho Báu Aztec
+                - generic [ref=e596]: 95,145
+          - listitem [ref=e597]:
+            - figure [ref=e598]:
+              - img [ref=e599]
+              - generic [ref=e600]:
+                - paragraph [ref=e601]:
+                  - generic [ref=e602]: da*****45
+                - paragraph [ref=e603]: PHI CÔNG
+                - generic [ref=e604]: 90,514
+          - listitem [ref=e605]:
+            - figure [ref=e606]:
+              - img [ref=e607]
+              - generic [ref=e608]:
+                - paragraph [ref=e609]:
+                  - generic [ref=e610]: th*****16
+                - paragraph [ref=e611]: Kho Báu Aztec
+                - generic [ref=e612]: 84,251
+          - listitem [ref=e613]:
+            - figure [ref=e614]:
+              - img [ref=e615]
+              - generic [ref=e616]:
+                - paragraph [ref=e617]:
+                  - generic [ref=e618]: ng*****51
+                - paragraph [ref=e619]: Chợ Đêm
+                - generic [ref=e620]: 62,510
+          - listitem [ref=e621]:
+            - figure [ref=e622]:
+              - img [ref=e623]
+              - generic [ref=e624]:
+                - paragraph [ref=e625]:
+                  - generic [ref=e626]: be*****22
+                - paragraph [ref=e627]: Kho Báu Aztec
+                - generic [ref=e628]: 859,741
+          - listitem [ref=e629]:
+            - figure [ref=e630]:
+              - img [ref=e631]
+              - generic [ref=e632]:
+                - paragraph [ref=e633]:
+                  - generic [ref=e634]: hu*****56
+                - paragraph [ref=e635]: Siêu Cấp Ace
+                - generic [ref=e636]: 845,141
+          - listitem [ref=e637]:
+            - figure [ref=e638]:
+              - img [ref=e639]
+              - generic [ref=e640]:
+                - paragraph [ref=e641]:
+                  - generic [ref=e642]: sa*****84
+                - paragraph [ref=e643]: Đường Mạt Chược
+                - generic [ref=e644]: 784,514
+          - listitem [ref=e645]:
+            - figure [ref=e646]:
+              - img [ref=e647]
+              - generic [ref=e648]:
+                - paragraph [ref=e649]:
+                  - generic [ref=e650]: ng*****74
+                - paragraph [ref=e651]: Đường Mạt Chược
+                - generic [ref=e652]: 684,145
+      - generic [ref=e653]:
+        - generic [ref=e655]:
+          - heading [level=2] [ref=e656]: trò chơi hot
+          - generic [ref=e657]: Tổng hợp game chất lượng giải trí cao
+        - list [ref=e658]:
+          - button [ref=e659] [cursor=pointer]: Previous
+          - generic [ref=e661]:
+            - listitem [ref=e664]: JDB ĐIỆN TỬ
+            - listitem [ref=e667]: JILI BẮN CÁ
+            - listitem [ref=e670]: PP ĐIỆN TỬ
+            - listitem [ref=e673]: MG ĐIỆN TỬ
+            - listitem [ref=e676]: SPRIBE ĐIỆN TỬ
+            - listitem [ref=e679]: BNG ĐIỆN TỬ
+            - listitem [ref=e682]: KA ĐIỆN TỬ
+            - listitem [ref=e685]: R88 ĐIỆN TỬ
+            - listitem [ref=e688]: PG ĐIỆN TỬ
+            - listitem [ref=e691]: FC ĐIỆN TỬ
+            - listitem [ref=e694]: TP ĐIỆN TỬ
+            - listitem [ref=e697]: JILI ĐIỆN TỬ
+            - listitem [ref=e700]: 168G ĐIỆN TỬ
+            - listitem [ref=e703]: YGR ĐIỆN TỬ
+            - listitem [ref=e706]: VA ĐIỆN TỬ
+            - listitem [ref=e709]: CQ9 ĐIỆN TỬ
+            - listitem [ref=e712]: JDB ĐIỆN TỬ
+            - listitem [ref=e715]: JILI BẮN CÁ
+            - listitem [ref=e718]: PP ĐIỆN TỬ
+            - listitem [ref=e721]: MG ĐIỆN TỬ
+            - listitem [ref=e724]: SPRIBE ĐIỆN TỬ
+            - listitem [ref=e727]: BNG ĐIỆN TỬ
+            - listitem [ref=e730]: KA ĐIỆN TỬ
+            - listitem [ref=e733]: R88 ĐIỆN TỬ
+            - listitem [ref=e736]: PG ĐIỆN TỬ
+            - listitem [ref=e739]: FC ĐIỆN TỬ
+            - listitem [ref=e742]: TP ĐIỆN TỬ
+            - listitem [ref=e745]: JILI ĐIỆN TỬ
+            - listitem [ref=e748]: 168G ĐIỆN TỬ
+            - listitem [ref=e751]: YGR ĐIỆN TỬ
+            - listitem [ref=e754]: VA ĐIỆN TỬ
+            - listitem [ref=e757]: CQ9 ĐIỆN TỬ
+            - listitem [ref=e760]: JDB ĐIỆN TỬ
+            - listitem [ref=e763]: JILI BẮN CÁ
+            - listitem [ref=e766]: PP ĐIỆN TỬ
+            - listitem [ref=e769]: MG ĐIỆN TỬ
+            - listitem [ref=e772]: SPRIBE ĐIỆN TỬ
+            - listitem [ref=e775]: BNG ĐIỆN TỬ
+            - listitem [ref=e778]: KA ĐIỆN TỬ
+            - listitem [ref=e781]: R88 ĐIỆN TỬ
+          - button [ref=e782] [cursor=pointer]: Next
+        - list [ref=e783]:
+          - listitem [ref=e784]:
+            - img [ref=e785]
+            - paragraph [ref=e786]: QUYẾT CHIẾN TIỀN THƯỞNG
+          - listitem [ref=e787]:
+            - img [ref=e788]
+            - paragraph [ref=e789]: Đường Mạt Chược
+          - listitem [ref=e790]:
+            - img [ref=e791]
+            - paragraph [ref=e792]: Đường Mạt Chược 2
+          - listitem [ref=e793]:
+            - img [ref=e794]
+            - paragraph [ref=e795]: Kho Báu Aztec
+          - listitem [ref=e796]:
+            - img [ref=e797]
+            - paragraph [ref=e798]: Neko May Mắn
+          - listitem [ref=e799]:
+            - img [ref=e800]
+            - paragraph [ref=e801]: Wild Đạo Tặc
+          - listitem [ref=e802]:
+            - img [ref=e803]
+            - paragraph [ref=e804]: Kỳ Lân Mách Nước
+          - listitem [ref=e805]:
+            - img [ref=e806]
+            - paragraph [ref=e807]: Quý bà say rượu
+          - listitem [ref=e808]:
+            - img [ref=e809]
+            - paragraph [ref=e810]: Thỏ May Mắn
+          - listitem [ref=e811]:
+            - img [ref=e812]
+            - paragraph [ref=e813]: "Wild Ape #3258"
+          - listitem [ref=e814]:
+            - img [ref=e815]
+            - paragraph [ref=e816]: Geisha's Revenge
+          - listitem [ref=e817]:
+            - img [ref=e818]
+            - paragraph [ref=e819]: Cơn Thịnh Nộ Của Anubis
+      - generic [ref=e821]:
+        - heading [level=2] [ref=e822]: CƯỢC và giải đấu hôm nay
+        - generic [ref=e823]:
+          - generic [ref=e824]:
+            - button [ref=e825] [cursor=pointer]: đặt cược trong ngày
+            - button [ref=e826] [cursor=pointer]: CƯỢC LỚN TRONG NGÀY
+          - generic [ref=e827]:
+            - generic [ref=e828]:
+              - generic [ref=e829]:
+                - generic [ref=e831]: Sảnh Game
+                - generic [ref=e833]: Trò Chơi
+                - generic [ref=e835]: Tài Khoản
+                - generic [ref=e837]: Thắng/Thua
+              - generic [ref=e838]:
+                - generic [ref=e840]: 
+                - list [ref=e841]:
+                  - listitem [ref=e842]:
+                    - generic [ref=e843]:
+                      - img [ref=e845]
+                      - generic [ref=e846]: 168G NỔ HŨ
+                    - generic [ref=e848]: Ù Mạt Chược 2
+                    - generic [ref=e850]: Gd***********
+                    - generic [ref=e852]: "-4,498.50"
+                  - listitem [ref=e853]:
+                    - generic [ref=e854]:
+                      - img [ref=e856]
+                      - generic [ref=e857]: SE CASINO
+                    - generic [ref=e859]: Rồng Hổ
+                    - generic [ref=e861]: mn***
+                    - generic [ref=e863]: 119,300.00
+                  - listitem [ref=e864]:
+                    - generic [ref=e865]:
+                      - img [ref=e867]
+                      - generic [ref=e868]: 168G NỔ HŨ
+                    - generic [ref=e870]: WILD ĐẠO TẶC 2
+                    - generic [ref=e872]: NI****
+                    - generic [ref=e874]: 43,491.00
+                  - listitem [ref=e875]:
+                    - generic [ref=e876]:
+                      - img [ref=e878]
+                      - generic [ref=e879]: DG CASINO
+                    - generic [ref=e881]: Fan Tan
+                    - generic [ref=e883]: yg**************
+                    - generic [ref=e885]: "-36,100.00"
+                  - listitem [ref=e886]:
+                    - generic [ref=e887]:
+                      - img [ref=e889]
+                      - generic [ref=e890]: 168G NỔ HŨ
+                    - generic [ref=e892]: QUYẾT CHIẾN TIỀN THƯỞNG KHỦNG 2
+                    - generic [ref=e894]: Ko************
+                    - generic [ref=e896]: 9,884.50
+                  - listitem [ref=e897]:
+                    - generic [ref=e898]:
+                      - img [ref=e900]
+                      - generic [ref=e901]: DG CASINO
+                    - generic [ref=e903]: ThreeCard
+                    - generic [ref=e905]: tf**
+                    - generic [ref=e907]: 43,600.00
+                  - listitem [ref=e908]:
+                    - generic [ref=e909]:
+                      - img [ref=e911]
+                      - generic [ref=e912]: SE CASINO
+                    - generic [ref=e914]: Extra Andar Bahar
+                    - generic [ref=e916]: ib************
+                    - generic [ref=e918]: 122,000.00
+                  - listitem [ref=e919]:
+                    - generic [ref=e920]:
+                      - img [ref=e922]
+                      - generic [ref=e923]: SE CASINO
+                    - generic [ref=e925]: Tài xỉu
+                    - generic [ref=e927]: gK****
+                    - generic [ref=e929]: 184,900.00
+                  - listitem [ref=e930]:
+                    - generic [ref=e931]:
+                      - img [ref=e933]
+                      - generic [ref=e934]: 168G NỔ HŨ
+                    - generic [ref=e936]: WILD ĐẠO TẶC 2
+                    - generic [ref=e938]: Wk******
+                    - generic [ref=e940]: 10,345.50
+                  - listitem [ref=e941]:
+                    - generic [ref=e942]:
+                      - img [ref=e944]
+                      - generic [ref=e945]: SE CASINO
+                    - generic [ref=e947]: Tài xỉu
+                    - generic [ref=e949]: Lc**********
+                    - generic [ref=e951]: 149,300.00
+                  - listitem [ref=e952]:
+                    - generic [ref=e953]:
+                      - img [ref=e955]
+                      - generic [ref=e956]: DG CASINO
+                    - generic [ref=e958]: ThreeCard
+                    - generic [ref=e960]: WN*****
+                    - generic [ref=e962]: "-12,700.00"
+                  - listitem [ref=e963]:
+                    - generic [ref=e964]:
+                      - img [ref=e966]
+                      - generic [ref=e967]: DG CASINO
+                    - generic [ref=e969]: Fan Tan
+                    - generic [ref=e971]: Eh*************
+                    - generic [ref=e973]: 23,200.00
+                  - listitem [ref=e974]:
+                    - generic [ref=e975]:
+                      - img [ref=e977]
+                      - generic [ref=e978]: 168G NỔ HŨ
+                    - generic [ref=e980]: KHO BÁU AZTEC 1024
+                    - generic [ref=e982]: vh***
+                    - generic [ref=e984]: "-9,006.00"
+                  - listitem [ref=e985]:
+                    - generic [ref=e986]:
+                      - img [ref=e988]
+                      - generic [ref=e989]: PG2 NỔ HŨ
+                    - generic [ref=e991]: Trang Sức Vương Giả
+                    - generic [ref=e993]: Xn*************
+                    - generic [ref=e995]: "989.00"
+                  - listitem [ref=e996]:
+                    - generic [ref=e997]:
+                      - img [ref=e999]
+                      - generic [ref=e1000]: DG CASINO
+                    - generic [ref=e1002]: SquintBaccarat
+                    - generic [ref=e1004]: FA*************
+                    - generic [ref=e1006]: "-9,600.00"
+                  - listitem [ref=e1007]:
+                    - generic [ref=e1008]:
+                      - img [ref=e1010]
+                      - generic [ref=e1011]: PG2 NỔ HŨ
+                    - generic [ref=e1013]: Linh Hồn Thần Bí
+                    - generic [ref=e1015]: AD*************
+                    - generic [ref=e1017]: 34,625.50
+                  - listitem [ref=e1018]:
+                    - generic [ref=e1019]:
+                      - img [ref=e1021]
+                      - generic [ref=e1022]: PG2 NỔ HŨ
+                    - generic [ref=e1024]: Neko May Mắn
+                    - generic [ref=e1026]: xu******
+                    - generic [ref=e1028]: "-9,850.00"
+                  - listitem [ref=e1029]:
+                    - generic [ref=e1030]:
+                      - img [ref=e1032]
+                      - generic [ref=e1033]: SE CASINO
+                    - generic [ref=e1035]: Thai Hi Lo
+                    - generic [ref=e1037]: bw*******
+                    - generic [ref=e1039]: "-4,200.00"
+                  - listitem [ref=e1040]:
+                    - generic [ref=e1041]:
+                      - img [ref=e1043]
+                      - generic [ref=e1044]: SE CASINO
+                    - generic [ref=e1046]: GameType_12330
+                    - generic [ref=e1048]: hz*********
+                    - generic [ref=e1050]: 23,100.00
+                  - listitem [ref=e1051]:
+                    - generic [ref=e1052]:
+                      - img [ref=e1054]
+                      - generic [ref=e1055]: PG2 NỔ HŨ
+                    - generic [ref=e1057]: Du Thuyền Hoàng Gia
+                    - generic [ref=e1059]: FO**********
+                    - generic [ref=e1061]: "-8,060.50"
+                  - listitem [ref=e1062]:
+                    - generic [ref=e1063]:
+                      - img [ref=e1065]
+                      - generic [ref=e1066]: PG2 NỔ HŨ
+                    - generic [ref=e1068]: Anubis Wrath
+                    - generic [ref=e1070]: OS*
+                    - generic [ref=e1072]: 29,731.00
+                  - listitem [ref=e1073]:
+                    - generic [ref=e1074]:
+                      - img [ref=e1076]
+                      - generic [ref=e1077]: 168G NỔ HŨ
+                    - generic [ref=e1079]: Sư Phụ Wada Chế độ Tốc Độ Cao
+                    - generic [ref=e1081]: cp**********
+                    - generic [ref=e1083]: "-7,657.00"
+                  - listitem [ref=e1084]:
+                    - generic [ref=e1085]:
+                      - img [ref=e1087]
+                      - generic [ref=e1088]: DG CASINO
+                    - generic [ref=e1090]: AndarBahar
+                    - generic [ref=e1092]: Db***
+                    - generic [ref=e1094]: "-27,300.00"
+                  - listitem [ref=e1095]:
+                    - generic [ref=e1096]:
+                      - img [ref=e1098]
+                      - generic [ref=e1099]: JiLi BẮN CÁ
+                    - generic [ref=e1101]: JILI Jackpot Vua Đại Dương
+                    - generic [ref=e1103]: X4******
+                    - generic [ref=e1105]: "-4,125.50"
+                  - listitem [ref=e1106]:
+                    - generic [ref=e1107]:
+                      - img [ref=e1109]
+                      - generic [ref=e1110]: 168G NỔ HŨ
+                    - generic [ref=e1112]: Siêu Sạc Dự Phòng
+                    - generic [ref=e1114]: Ie**
+                    - generic [ref=e1116]: 15,846.00
+                  - listitem [ref=e1117]:
+                    - generic [ref=e1118]:
+                      - img [ref=e1120]
+                      - generic [ref=e1121]: 168G NỔ HŨ
+                    - generic [ref=e1123]: QUYẾT CHIẾN TIỀN THƯỞNG KHỦNG 2048
+                    - generic [ref=e1125]: Fj*
+                    - generic [ref=e1127]: 32,279.00
+                  - listitem [ref=e1128]:
+                    - generic [ref=e1129]:
+                      - img [ref=e1131]
+                      - generic [ref=e1132]: PG2 NỔ HŨ
+                    - generic [ref=e1134]: Cây Tài Lộc
+                    - generic [ref=e1136]: bc*
+                    - generic [ref=e1138]: 20,087.00
+                  - listitem [ref=e1139]:
+                    - generic [ref=e1140]:
+                      - img [ref=e1142]
+                      - generic [ref=e1143]: DG CASINO
+                    - generic [ref=e1145]: Block Chain Baccarat
+                    - generic [ref=e1147]: uU**********
+                    - generic [ref=e1149]: 170,300.00
+                  - listitem [ref=e1150]:
+                    - generic [ref=e1151]:
+                      - img [ref=e1153]
+                      - generic [ref=e1154]: PG2 NỔ HŨ
+                    - generic [ref=e1156]: Vận May Nông Trại
+                    - generic [ref=e1158]: ce*
+                    - generic [ref=e1160]: 39,091.00
+                  - listitem [ref=e1161]:
+                    - generic [ref=e1162]:
+                      - img [ref=e1164]
+                      - generic [ref=e1165]: SE CASINO
+                    - generic [ref=e1167]: Pok Deng
+                    - generic [ref=e1169]: U9*****
+                    - generic [ref=e1171]: "-18,500.00"
+                  - listitem [ref=e1172]:
+                    - generic [ref=e1173]:
+                      - img [ref=e1175]
+                      - generic [ref=e1176]: SE CASINO
+                    - generic [ref=e1178]: Rồng hổ
+                    - generic [ref=e1180]: qU***
+                    - generic [ref=e1182]: 43,400.00
+                  - listitem [ref=e1183]:
+                    - generic [ref=e1184]:
+                      - img [ref=e1186]
+                      - generic [ref=e1187]: SE CASINO
+                    - generic [ref=e1189]: Rồng hổ
+                    - generic [ref=e1191]: N0**********
+                    - generic [ref=e1193]: 12,100.00
+                  - listitem [ref=e1194]:
+                    - generic [ref=e1195]:
+                      - img [ref=e1197]
+                      - generic [ref=e1198]: DG CASINO
+                    - generic [ref=e1200]: Xoc Dia
+                    - generic [ref=e1202]: No**********
+                    - generic [ref=e1204]: "-9,500.00"
+                  - listitem [ref=e1205]:
+                    - generic [ref=e1206]:
+                      - img [ref=e1208]
+                      - generic [ref=e1209]: 168G NỔ HŨ
+                    - generic [ref=e1211]: Neko Bảo Thạch
+                    - generic [ref=e1213]: cu************
+                    - generic [ref=e1215]: "-9,097.50"
+                  - listitem [ref=e1216]:
+                    - generic [ref=e1217]:
+                      - img [ref=e1219]
+                      - generic [ref=e1220]: PG2 NỔ HŨ
+                    - generic [ref=e1222]: Kỳ Nghỉ Bali
+                    - generic [ref=e1224]: yL*
+                    - generic [ref=e1226]: "-2,171.50"
+                  - listitem [ref=e1227]:
+                    - generic [ref=e1228]:
+                      - img [ref=e1230]
+                      - generic [ref=e1231]: JiLi BẮN CÁ
+                    - generic [ref=e1233]: JILI Jackpot Vua Đại Dương
+                    - generic [ref=e1235]: ra*********
+                    - generic [ref=e1237]: 46,553.50
+                  - listitem [ref=e1238]:
+                    - generic [ref=e1239]:
+                      - img [ref=e1241]
+                      - generic [ref=e1242]: DG CASINO
+                    - generic [ref=e1244]: ThreeFace
+                    - generic [ref=e1246]: d8*************
+                    - generic [ref=e1248]: 104,600.00
+                  - listitem [ref=e1249]:
+                    - generic [ref=e1250]:
+                      - img [ref=e1252]
+                      - generic [ref=e1253]: PG2 NỔ HŨ
+                    - generic [ref=e1255]: Khu Rừng Vui Nhộn
+                    - generic [ref=e1257]: iG********
+                    - generic [ref=e1259]: "-2,034.50"
+                  - listitem [ref=e1260]:
+                    - generic [ref=e1261]:
+                      - img [ref=e1263]
+                      - generic [ref=e1264]: PG2 NỔ HŨ
+                    - generic [ref=e1266]: Nữ Hoàng Tiền Thưởng
+                    - generic [ref=e1268]: Mp*********
+                    - generic [ref=e1270]: 35,491.50
+                  - listitem [ref=e1271]:
+                    - generic [ref=e1272]:
+                      - img [ref=e1274]
+                      - generic [ref=e1275]: SE CASINO
+                    - generic [ref=e1277]: Pok Deng
+                    - generic [ref=e1279]: gu***
+                    - generic [ref=e1281]: 2,100.00
+                  - listitem [ref=e1282]:
+                    - generic [ref=e1283]:
+                      - img [ref=e1285]
+                      - generic [ref=e1286]: DG CASINO
+                    - generic [ref=e1288]: Roulette
+                    - generic [ref=e1290]: SC***
+                    - generic [ref=e1292]: 152,200.00
+                  - listitem [ref=e1293]:
+                    - generic [ref=e1294]:
+                      - img [ref=e1296]
+                      - generic [ref=e1297]: SE CASINO
+                    - generic [ref=e1299]: Red Blue Duel
+                    - generic [ref=e1301]: xs**************
+                    - generic [ref=e1303]: 137,100.00
+                  - listitem [ref=e1304]:
+                    - generic [ref=e1305]:
+                      - img [ref=e1307]
+                      - generic [ref=e1308]: JiLi BẮN CÁ
+                    - generic [ref=e1310]: JILI Boom Legend
+                    - generic [ref=e1312]: xs**
+                    - generic [ref=e1314]: 31,999.00
+                  - listitem [ref=e1315]:
+                    - generic [ref=e1316]:
+                      - img [ref=e1318]
+                      - generic [ref=e1319]: DG CASINO
+                    - generic [ref=e1321]: AndarBahar
+                    - generic [ref=e1323]: zF*********
+                    - generic [ref=e1325]: "-11,100.00"
+                  - listitem [ref=e1326]:
+                    - generic [ref=e1327]:
+                      - img [ref=e1329]
+                      - generic [ref=e1330]: SE CASINO
+                    - generic [ref=e1332]: Extra Andar Bahar
+                    - generic [ref=e1334]: da****
+                    - generic [ref=e1336]: "-47,700.00"
+                  - listitem [ref=e1337]:
+                    - generic [ref=e1338]:
+                      - img [ref=e1340]
+                      - generic [ref=e1341]: SE CASINO
+                    - generic [ref=e1343]: Insurance
+                    - generic [ref=e1345]: y4***********
+                    - generic [ref=e1347]: "-27,800.00"
+                  - listitem [ref=e1348]:
+                    - generic [ref=e1349]:
+                      - img [ref=e1351]
+                      - generic [ref=e1352]: DG CASINO
+                    - generic [ref=e1354]: InBaccarat
+                    - generic [ref=e1356]: xc*******
+                    - generic [ref=e1358]: 125,200.00
+                  - listitem [ref=e1359]:
+                    - generic [ref=e1360]:
+                      - img [ref=e1362]
+                      - generic [ref=e1363]: SE CASINO
+                    - generic [ref=e1365]: Tài xỉu
+                    - generic [ref=e1367]: Ta****
+                    - generic [ref=e1369]: "-37,300.00"
+                  - listitem [ref=e1370]:
+                    - generic [ref=e1371]:
+                      - img [ref=e1373]
+                      - generic [ref=e1374]: PG2 NỔ HŨ
+                    - generic [ref=e1376]: Ninja đối đầu Samurai
+                    - generic [ref=e1378]: hW********
+                    - generic [ref=e1380]: 8,045.50
+                  - listitem [ref=e1381]:
+                    - generic [ref=e1382]:
+                      - img [ref=e1384]
+                      - generic [ref=e1385]: SE CASINO
+                    - generic [ref=e1387]: Teen Patti 2020
+                    - generic [ref=e1389]: rt*******
+                    - generic [ref=e1391]: 95,200.00
+            - text: 
+      - generic [ref=e1392]:
+        - generic [ref=e1394]:
+          - heading [level=2] [ref=e1395]: tải app
+          - generic [ref=e1396]: Trải nghiệm nền tảng giải trí đỉnh cao được tối ưu hoá nhất
+        - generic [ref=e1397]:
+          - img [ref=e1398]
+          - generic [ref=e1399]:
+            - generic [ref=e1400]: Trải nghiệm nền tảng giải trí đỉnh cao được tối ưu hoá nhất, giao diện thân thiện và dễ dàng thao tác trên mọi thiết bị.
+            - generic [ref=e1401]:
+              - generic [ref=e1402]:
+                - img [ref=e1403]
+                - generic [ref=e1404]: IOS
+                - link [ref=e1405] [cursor=pointer]:
+                  - /url: https://f8bet9.co/APP
+                  - text: Tải ngay
+              - generic [ref=e1406]:
+                - img [ref=e1407]
+                - generic [ref=e1408]: Android
+                - link [ref=e1409] [cursor=pointer]:
+                  - /url: https://f8bet9.co/APP
+                  - text: Tải ngay
+      - generic [ref=e1410]:
+        - generic [ref=e1412]:
+          - heading [level=2] [ref=e1413]: DỊCH VỤ CHẤT LƯỢNG CAO
+          - generic [ref=e1414]: F8BET hết lòng cung cấp cho bạn dịch vụ tốt nhất
+        - list [ref=e1416]:
+          - listitem [ref=e1417]: thời gian gửi tiền trung bình
+          - listitem [ref=e1418]: THỜI GIAN RÚT TIỀN TRUNG BÌNH
+          - listitem [ref=e1419]: TỶ LỆ HOA HỒNG ĐẠI LÝ
+          - listitem [ref=e1420]: NHÀ CUNG CẤP GAME
+        - list [ref=e1421]:
+          - listitem [ref=e1422]:
+            - img [ref=e1423]
+            - generic [ref=e1424]:
+              - text: Nạp - Rút tiền và thanh toán siêu nhanh
+              - paragraph [ref=e1425]: Hệ thống liên kết đa dạng tất cả phương thức thanh toán và tự động cập nhật điểm cực nhanh chóng, hạn mức rút tiền cao nhất thị trường, an toàn cao. Để khách hàng có thể tận hưởng chất lượng, dịch vụ bậc nhất.
+          - listitem [ref=e1426]:
+            - img [ref=e1427]
+            - generic [ref=e1428]:
+              - text: Đa dạng sản phẩm
+              - paragraph [ref=e1429]: Hệ thống cung cấp đa dạng tất các sản phẩm như Casino, Thể Thao, Bắn Cá, Nổ Hũ, Game Bài, Xổ Số, Đá Gà .... nhằm đáp ứng nhu cầu của toàn bộ khách hàng và tạo cho cảm giác giải trí hoàn hảo nhất mà không nơi nào có.
+          - listitem [ref=e1430]:
+            - img [ref=e1431]
+            - generic [ref=e1432]:
+              - text: Hệ thống bảo mật nghiêm ngặt
+              - paragraph [ref=e1433]: Tất cả thông tin của khách hàng được hệ thống bảo mật nghiêm ngặt và được mã hóa một cách tuyệt đối. Chúng tôi cam kết việc bảo mật thông tin khách hàng lên hàng đầu, để khách hàng tận hưởng được trọn vẹn hoạt động giải trí mà không phải đắn đo gì.
+          - listitem [ref=e1434]:
+            - img [ref=e1435]
+            - generic [ref=e1436]:
+              - text: Đội ngũ chăm sóc khách hàng hỗ trợ 24/7
+              - paragraph [ref=e1437]: Với đội ngũ chăm sóc khách hàng phục vụ chu đáo và trực tuyến 24/7. Luôn đảm bảo rằng, tất cả các yêu cầu của khách hàng sẽ luôn được hỗ trợ giải đáp kịp thời, tận tâm, nhanh chóng và chất lượng nhất
+    - contentinfo [ref=e1439]:
+      - generic [ref=e1441]:
+        - generic [ref=e1442]:
+          - generic [ref=e1443]:
+            - img [ref=e1444]
+            - paragraph [ref=e1445]:
+              - text: F8BET là một nhà cái có giấy phép cá cược trực tuyến hợp pháp do Isle of Man và Khu kinh tế Cagayan and Freeport cấp. Với bề dày kinh nghiệm và danh tiếng phục vụ hơn 10 triệu người chơi, F8BET đã và đang khẳng định vị thế của mình [...]
+              - generic [ref=e1446] [cursor=pointer]: Xem thêm
+          - link [ref=e1448] [cursor=pointer]:
+            - /url: https://f8bet9.co/DAISUF8BET
+            - heading [level=2] [ref=e1449]: đại Sứ Thương Hiệu
+            - generic [ref=e1450]:
+              - img [ref=e1451]
+              - generic [ref=e1452]:
+                - img [ref=e1453]
+                - paragraph [ref=e1454]: David De Gea Năm 2024 - 2025
+            - generic [ref=e1455]:
+              - img [ref=e1456]
+              - generic [ref=e1457]:
+                - img [ref=e1458]
+                - paragraph [ref=e1459]: Eimi Fukada Năm 2024 - 2025
+        - list [ref=e1460]:
+          - listitem [ref=e1461]
+          - listitem [ref=e1462]
+          - listitem [ref=e1463]
+          - listitem [ref=e1464]
+          - listitem [ref=e1465]
+          - listitem [ref=e1466]
+          - listitem [ref=e1467]
+          - listitem [ref=e1468]
+          - listitem [ref=e1469]
+          - listitem [ref=e1470]
+          - listitem [ref=e1471]:
+            - link [ref=e1472] [cursor=pointer]:
+              - /url: https://f8bet9.co/KENHKM01
+          - listitem [ref=e1473]:
+            - link [ref=e1474] [cursor=pointer]:
+              - /url: https://www.facebook.com/F8BET.official1
+          - listitem [ref=e1475]:
+            - link [ref=e1476] [cursor=pointer]:
+              - /url: https://f8bet9.co/YOUTUBE
+        - list [ref=e1477]:
+          - listitem [ref=e1478]:
+            - link [ref=e1479] [cursor=pointer]:
+              - /url: /rule
+              - text: Điều khoản và điều kiện
+          - listitem [ref=e1480]:
+            - link [ref=e1481] [cursor=pointer]:
+              - /url: /AboutUS
+              - text: Giới thiệu về F8BET
+          - listitem [ref=e1482]:
+            - link [ref=e1483] [cursor=pointer]:
+              - /url: /ResponsibleGambling
+              - text: Chơi có trách nhiệm
+          - listitem [ref=e1484]:
+            - link [ref=e1485] [cursor=pointer]:
+              - /url: /Disclaimer
+              - text: Miễn trách nhiệm
+          - listitem [ref=e1486]:
+            - link [ref=e1487] [cursor=pointer]:
+              - /url: /Privacy
+              - text: Quyền riêng tư tại F8BET
+          - listitem [ref=e1488]:
+            - link [ref=e1489] [cursor=pointer]:
+              - /url: /FAQ
+              - text: Những câu hỏi thường gặp
+      - paragraph [ref=e1490]: Copyright © F8BET.COM Reserved
+    - generic [ref=e1492]:
+      - generic [ref=e1493]: Duyệt qua lịch sử
+      - list [ref=e1495]:
+        - listitem [ref=e1500]: No data
+    - complementary [ref=e1501]:
+      - generic [ref=e1503]: 
+      - img [ref=e1505]
+    - complementary [ref=e1506]:
+      - generic [ref=e1508]: 
+      - link [ref=e1509] [cursor=pointer]:
+        - /url: https://f8game.bet/
+        - img [ref=e1510]
+```
+
+# Test source
+
+```ts
+  1  | import type { Page } from '@playwright/test';
+  2  | import { LoginFormComponent } from '../components/login-form.component';
+  3  | 
+  4  | export class LoginPage {
+  5  |   readonly loginForm: LoginFormComponent;
+  6  |   readonly title: ReturnType<Page['locator']>;
+  7  |   readonly subtitle: ReturnType<Page['locator']>;
+  8  | 
+  9  |   constructor(private readonly page: Page) {
+  10 |     this.loginForm = new LoginFormComponent(page.locator('.login-card form[action="/login"]'));
+  11 |     this.title = page.locator('.login-card h1');
+  12 |     this.subtitle = page.locator('.login-card .subtitle');
+  13 |   }
+  14 | 
+  15 |   async goto(): Promise<void> {
+  16 |     await this.page.goto('https://f8betbb1.vip/');
+> 17 |     await this.loginForm.usernameInput.waitFor({ state: 'visible' });
+     |                                        ^ TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+  18 |   }
+  19 | }
+  20 | 
+```

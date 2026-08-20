@@ -1,0 +1,68 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api/auth/login.spec.ts >> API — Auth Login >> POST /api/auth/login trả về username khớp payload
+- Location: tests/api/auth/login.spec.ts:23:7
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: false
+```
+
+# Test source
+
+```ts
+  1  | import { env } from '../../../config/env.config';
+  2  | import { expect, test } from '../../../src/fixtures/api.fixture';
+  3  | import { assertOpenApiRequest, assertOpenApiResponse } from '../../../src/utils/openapi.validator';
+  4  | 
+  5  | test.describe('API — Auth Login', () => {
+  6  |   test('POST /api/auth/login thành công với credentials hợp lệ', async ({ authService }) => {
+  7  |     const apiLoginPayload = {
+  8  |       username: env.apiAuth.username,
+  9  |       bank: env.apiAuth.bank,
+  10 |       site: env.apiAuth.site,
+  11 |     };
+  12 | 
+  13 |     assertOpenApiRequest('POST', '/api/auth/login', apiLoginPayload);
+  14 | 
+  15 |     const { response, body } = await authService.auth.loginAndParse(apiLoginPayload);
+  16 | 
+  17 |     expect(response.status()).toBe(200);
+  18 |     expect(body.username).toBe(env.apiAuth.username);
+  19 |     expect(body.message).toMatch(/thành công/i);
+  20 |     assertOpenApiResponse('POST', '/api/auth/login', body);
+  21 |   });
+  22 | 
+  23 |   test('POST /api/auth/login trả về username khớp payload', async ({ authService }) => {
+  24 |     const payload = {
+  25 |       username: env.apiAuth.username,
+  26 |       bank: env.apiAuth.bank,
+  27 |       site: env.apiAuth.site,
+  28 |     };
+  29 | 
+  30 |     assertOpenApiRequest('POST', '/api/auth/login', payload);
+  31 | 
+  32 |     const response = await authService.auth.login(payload);
+  33 | 
+> 34 |     expect(response.ok()).toBeTruthy();
+     |                           ^ Error: expect(received).toBeTruthy()
+  35 | 
+  36 |     const body = await response.json();
+  37 |     expect(body).toMatchObject({
+  38 |       username: payload.username,
+  39 |       message: expect.any(String),
+  40 |     });
+  41 |     assertOpenApiResponse('POST', '/api/auth/login', body);
+  42 |   });
+  43 | });
+  44 | 
+```

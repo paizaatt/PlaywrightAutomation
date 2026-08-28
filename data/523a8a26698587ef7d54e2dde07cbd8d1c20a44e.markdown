@@ -1,0 +1,70 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api/auth/login.spec.ts >> API — Auth Login >> POST /api/auth/login thành công với credentials hợp lệ
+- Location: tests/api/auth/login.spec.ts:6:7
+
+# Error details
+
+```
+Error: apiRequestContext.post: getaddrinfo ENOTFOUND be-truytimkhobau-sc.attops.net
+Call log:
+  - → POST https://be-truytimkhobau-sc.attops.net/api/auth/login
+    - user-agent: Playwright/1.60.0 (x64; ubuntu 24.04) node/22.23 CI/1
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+    - content-type: application/json
+    - content-length: 50
+
+```
+
+# Test source
+
+```ts
+  1  | import type { APIRequestContext, APIResponse } from '@playwright/test';
+  2  | 
+  3  | //lấy chính xác bộ khung (Options: chứa data, headers. params, timeout, ...)
+  4  | export type ApiPostOption = Parameters<APIRequestContext['post']>[1];
+  5  | export type ApiGetOption = Parameters<APIRequestContext['get']>[1];
+  6  | export type ApiPutOption = Parameters<APIRequestContext['put']>[1];
+  7  | export type ApiPatchOption = Parameters<APIRequestContext['patch']>[1];
+  8  | export type ApiDeleteOption = Parameters<APIRequestContext['delete']>[1];
+  9  | 
+  10 | export abstract class BaseApiComponent {
+  11 |   constructor(
+  12 |     protected readonly request: APIRequestContext,
+  13 |     protected readonly baseURL: string,
+  14 |   ) {}
+  15 | 
+  16 |   protected resolveUrl(path: string): string {
+  17 |     return new URL(path, this.baseURL).toString();
+  18 |   }
+  19 | 
+  20 |   protected post(path: string, options?: ApiPostOption): Promise<APIResponse> {
+> 21 |     return this.request.post(this.resolveUrl(path), options);
+     |                         ^ Error: apiRequestContext.post: getaddrinfo ENOTFOUND be-truytimkhobau-sc.attops.net
+  22 |   }
+  23 | 
+  24 |   protected get(path: string, options?: ApiGetOption): Promise<APIResponse> {
+  25 |     return this.request.get(this.resolveUrl(path), options);
+  26 |   }
+  27 | 
+  28 |   protected put(path: string, options?: ApiPutOption): Promise<APIResponse> {
+  29 |     return this.request.put(this.resolveUrl(path), options);
+  30 |   }
+  31 | 
+  32 |   protected patch(path: string, options?: ApiPatchOption): Promise<APIResponse> {
+  33 |     return this.request.patch(this.resolveUrl(path), options);
+  34 |   }
+  35 | 
+  36 |   protected delete(path: string, options?: ApiDeleteOption): Promise<APIResponse> {
+  37 |     return this.request.delete(this.resolveUrl(path), options);
+  38 |   }
+  39 | }
+  40 | 
+```

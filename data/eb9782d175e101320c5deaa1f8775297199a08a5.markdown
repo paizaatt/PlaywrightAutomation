@@ -1,0 +1,51 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ../config/auth.setup.ts >> authenticate
+- Location: config/auth.setup.ts:8:6
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('.login-card form[action="/login"]').locator('#username') to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- heading "403 Forbidden" [level=1] [ref=e3]
+```
+
+# Test source
+
+```ts
+  1  | import type { Page } from '@playwright/test';
+  2  | import { LoginFormComponent } from '../components/login-form.component';
+  3  | 
+  4  | export class LoginPage {
+  5  |   readonly loginForm: LoginFormComponent;
+  6  |   readonly title: ReturnType<Page['locator']>;
+  7  |   readonly subtitle: ReturnType<Page['locator']>;
+  8  | 
+  9  |   constructor(private readonly page: Page) {
+  10 |     this.loginForm = new LoginFormComponent(page.locator('.login-card form[action="/login"]'));
+  11 |     this.title = page.locator('.login-card h1');
+  12 |     this.subtitle = page.locator('.login-card .subtitle');
+  13 |   }
+  14 | 
+  15 |   async goto(): Promise<void> {
+  16 |     await this.page.goto('https://f8betbb1.vip/');
+> 17 |     await this.loginForm.usernameInput.waitFor({ state: 'visible' });
+     |                                        ^ TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+  18 |   }
+  19 | }
+  20 | 
+```
